@@ -3,7 +3,6 @@ package platform
 import (
 	"encoding/base64"
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"net/url"
 	"strings"
@@ -46,7 +45,6 @@ func (p *Platform) IsAuthorized() *Platform {
 
 func (p *Platform) ApiUrl(url string) string {
 	absUrl := strings.Join([]string{p.server, URL_PREFIX, "/", API_VERSION, url}, "")
-	fmt.Println(absUrl)
 	return absUrl
 }
 
@@ -62,9 +60,7 @@ func (p *Platform) Authorize(username string, extension string, password string,
 			return res, err3
 		}
 		p.auth.SetData(authData)
-		fmt.Printf("[%v]\n", authData)
 	}
-	fmt.Println(res.Status)
 	return res, err
 }
 
