@@ -70,7 +70,7 @@ fax := requesthelpers.NewReqHelperFaxFile([]byte(`{
 	"faxResolution" : "High"
 }`), "/path/to/myfile.pdf")
 
-resp, _ := platform.Post("/account/~/extension/~/fax", url.Values{}, fax.GetBody(), fax.GetHeaders())
+resp, err := platform.Post("/account/~/extension/~/fax", url.Values{}, fax.GetBody(), fax.GetHeaders())
 ```
 
 # SMS

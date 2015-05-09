@@ -30,7 +30,7 @@ fax := requesthelpers.NewReqHelperFaxFile([]byte(`{
 	"faxResolution" : "High"
 }`), "/path/to/myfile.pdf")
 
-resp, _ := platform.Post("/account/~/extension/~/fax", url.Values{}, fax.GetBody(), fax.GetHeaders())
+resp, err := platform.Post("/account/~/extension/~/fax", url.Values{}, fax.GetBody(), fax.GetHeaders())
 ```
 
 ## Examples
@@ -50,6 +50,8 @@ fax := requesthelpers.NewReqHelperFaxFile([]byte(`{
 	"to" : [{"phoneNumber": "16505551212"}],
 	"faxResolution" : "High"
 }`), "/path/to/test_file.pdf")
+
+resp, err := platform.Post("/account/~/extension/~/fax", url.Values{}, fax.GetBody(), fax.GetHeaders())
 ```
 
 ##### HTTP Request
