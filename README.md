@@ -59,8 +59,6 @@ import(
 	"net/url"
 )
 
-platform := sdk.GetPlatform();
-
 resp, err := platform.Post("/account/~/extension/~/sms", url.Values{}, []byte(`{ 
 	"to"   : [{"phoneNumber": "14155551212"}],
 	"from" :  {"phoneNumber": "16505551212"}, 
