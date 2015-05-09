@@ -14,7 +14,7 @@ This is a alpha SDK for the RingCentral for Developers platform. It attempts to 
 # Installation
 
 ```bash
-$ go get github.com/grokify/ringcentral-sdk-go/rcsdk
+$ go get github.com/grokify/ringcentral-sdk-go
 ```
 
 # Core Module
@@ -24,6 +24,9 @@ $ go get github.com/grokify/ringcentral-sdk-go/rcsdk
 The SDK is represented by the global RCSDK constructor. Your application must create an instance of this object.
 
 ```go
+import(
+	"github.com/grokify/ringcentral-sdk-go/rcsdk"
+)
 // For Production use: "https://platform.ringcentral.com"
 // For Sandbox use:  "https://platform.devtest.ringcentral.com"
 sdk := rcsdk.NewSdk("yourAppKey", "yourAppSecret", "https://platform.devtest.ringcentral.com")
@@ -51,6 +54,11 @@ platform.Authorize('+16505551212','101','yourPassword')
 In order to send an SMS using the API, make a POST request to `/account/~/extension/~/sms`:
 
 ```go
+import(
+	"net/http"
+	"net/url"
+)
+
 body := []byte(`{ 
 	"to"   : [{"phoneNumber": "14155551212"}],
 	"from" :  {"phoneNumber": "16505551212"}, 
