@@ -147,7 +147,7 @@ import (
 	"github.com/grokify/gotilla/net/httputil"
 )
 
-fileUrl := "https://platform.devtest.ringcentral.com/restapi/v1.0/account/111111111/extension/222222222/message-store/333333333/content/4444444444"
+fileUrl := "/account/111111111/extension/222222222/message-store/333333333/content/4444444444"
 
 resp, _ := platform.Get(fileUrl, url.Values{}, []byte{}, http.Header{})
 body, _ := httputil.ResponseBody(resp)
