@@ -18,22 +18,32 @@ type ReqHelperFaxFile struct {
 	body     []byte
 }
 
-func NewReqHelperFaxFile(metadata []byte, filename string) ReqHelperFaxFile {
+func NewReqHelperFaxFile(metadata []byte, filename string) (ReqHelperFaxFile, error) {
 	fax := ReqHelperFaxFile{}
 	fax.metadata = metadata
 	fax.filename = filename
-	fax.build()
-	return fax
+	err := fax.build()
+	return fax, err
 }
 
-func (fax *ReqHelperFaxFile) build() {
+func (fax *ReqHelperFaxFile) build() error {
 	body := &bytes.Buffer{}
 	fax.writer = multipart.NewWriter(body)
-	fax.SetMetadata(fax.metadata)
-	fax.SetFile(fax.filename)
-	fax.writer.Close()
+	err := fax.SetMetadata(fax.metadata)
+	if err != nil {
+		return err
+	}
+	err = fax.SetFile(fax.filename)
+	if err != nil {
+		return err
+	}
+	err = fax.writer.Close()
+	if err != nil {
+		return err
+	}
 	fax.body = body.Bytes()
 	fax.setHeaders()
+	return nil
 }
 
 func (fax *ReqHelperFaxFile) SetMetadata(metadata []byte) error {
@@ -58,10 +68,10 @@ func (fax *ReqHelperFaxFile) SetFile(path string) error {
 	}
 
 	// FILE HEAD
-	_, filename := filepath.Split(path)
-
 	fileHead := textproto.MIMEHeader{}
 	fileHead.Add("Content-Type", "application/octet-stream")
+
+	_, filename := filepath.Split(path)
 	if len(filename) > 0 {
 		fileHead.Add("Content-Disposition", strings.Join([]string{`attachment; filename="`, filename, `"`}, ""))
 	} else {

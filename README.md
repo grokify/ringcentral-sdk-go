@@ -65,7 +65,7 @@ import(
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/helpers/requesthelpers"
 )
 
-fax := requesthelpers.NewReqHelperFaxFile([]byte(`{ 
+fax, _ := requesthelpers.NewReqHelperFaxFile([]byte(`{ 
 	"to" : [{"phoneNumber": "16505551212"}],
 	"faxResolution" : "High"
 }`), "/path/to/myfile.pdf")

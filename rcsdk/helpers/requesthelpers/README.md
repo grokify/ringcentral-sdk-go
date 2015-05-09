@@ -25,7 +25,7 @@ platform := sdk.GetPlatform();
 
 platform.Authorize('+16505551212','101','yourPassword')
 
-fax := requesthelpers.NewReqHelperFaxFile([]byte(`{ 
+fax, _ := requesthelpers.NewReqHelperFaxFile([]byte(`{ 
 	"to" : [{"phoneNumber": "16505551212"}],
 	"faxResolution" : "High"
 }`), "/path/to/myfile.pdf")
@@ -48,7 +48,7 @@ This example sends the included `test_file.pdf` as `Content-Type: application/oc
 ```go
 // import rcsdk, instantiate SDK, retrieve platform object and authorize user here
 
-fax := requesthelpers.NewReqHelperFaxFile([]byte(`{ 
+fax, _ := requesthelpers.NewReqHelperFaxFile([]byte(`{ 
 	"to" : [{"phoneNumber": "16505551212"}],
 	"faxResolution" : "High"
 }`), "/path/to/test_file.pdf")
@@ -147,6 +147,7 @@ Note: this example uses `net/httputil` from `gotilla`.
 // import rcsdk, instantiate SDK, retrieve platform object and authorize user here
 
 import (
+	"io/ioutil"
 	"net/http"
 	"net/url"
 
