@@ -3,6 +3,7 @@
 1. [Overview](#overview)
 2. [Installation](#installation)
 3. [Core Module](#core-module)
+4. [Fax](#fax)
 4. [SMS](#sms)
 
 ***
@@ -57,7 +58,7 @@ To fax a file, it is recommended to use the fax request helper which will create
 
 ```go
 import(
-	"github.com/grokify/ringcentral-sdk-go/rcsdk/helpers/request"
+	"github.com/grokify/ringcentral-sdk-go/rcsdk/helpers/requesthelpers"
 )
 
 fax := requesthelpers.NewReqHelperFaxFile([]byte(`{ 

@@ -15,7 +15,7 @@ The fax file helper takes a metadata byte array along with a file path and creat
 
 ```go
 import(
-	"github.com/grokify/ringcentral-sdk-go/rcsdk/helpers/request"
+	"github.com/grokify/ringcentral-sdk-go/rcsdk/helpers/requesthelpers"
 )
 
 fax := requesthelpers.NewReqHelperFaxFile([]byte(`{ 
