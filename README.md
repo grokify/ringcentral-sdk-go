@@ -59,14 +59,12 @@ import(
 	"net/url"
 )
 
-body := []byte(`{ 
+platform := sdk.GetPlatform();
+
+resp, err := platform.Post("/account/~/extension/~/sms", url.Values{}, []byte(`{ 
 	"to"   : [{"phoneNumber": "14155551212"}],
 	"from" :  {"phoneNumber": "16505551212"}, 
 	"text" : "Test from Go"
-}`)
-
-platform := sdk.GetPlatform();
-
-resp, err := platform.Post("/account/~/extension/~/sms", url.Values{}, body, http.Header{})
+}`), http.Header{})
 ```
 
