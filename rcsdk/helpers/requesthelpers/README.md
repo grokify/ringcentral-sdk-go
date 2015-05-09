@@ -1,8 +1,7 @@
 # Table of contents
 
 1. [Overview](#overview)
-2. [Synopsis](#synopsis)
-3. [Example Requests](#example-requests)
+2. [Fax](#fax)
 
 ***
 
@@ -34,15 +33,15 @@ fax := requesthelpers.NewReqHelperFaxFile([]byte(`{
 resp, _ := platform.Post("/account/~/extension/~/fax", url.Values{}, fax.GetBody(), fax.GetHeaders())
 ```
 
-# Example Requests
+## Examples
 
 The following examples use the test files included in this repository, including `test_file.pdf`.
 
-## Request 1: PDF
+### Request 1: PDF
 
-### Example Request
+#### Example Request
 
-#### Go Request
+##### Go Request
 
 ```go
 fax := requesthelpers.NewReqHelperFaxFile([]byte(`{ 
@@ -51,7 +50,7 @@ fax := requesthelpers.NewReqHelperFaxFile([]byte(`{
 }`), "/path/to/test_file.pdf")
 ```
 
-#### HTTP Request
+##### HTTP Request
 
 ```http
 POST https://platform.ringcentral.com/restapi/v1.0/account/~/extension/~/fax HTTP/1.1
