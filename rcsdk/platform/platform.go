@@ -107,6 +107,11 @@ func (p *Platform) authCall(username string, extension string, password string) 
 	return client.Do(req)
 }
 
+func (p *Platform) Get(url string, queryParameters url.Values, body []byte, headers http.Header) (*http.Response, error) {
+	rcreq := p.context.GetRequest("GET", url, queryParameters, body, headers)
+	return p.apiCall(rcreq)
+}
+
 func (p *Platform) Post(url string, queryParameters url.Values, body []byte, headers http.Header) (*http.Response, error) {
 	rcreq := p.context.GetRequest("POST", url, queryParameters, body, headers)
 	return p.apiCall(rcreq)

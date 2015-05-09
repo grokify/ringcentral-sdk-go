@@ -103,3 +103,54 @@ c#??ϣ????|              ʿ?\?K            ??b?M~'???f?6
 %%EOFxref46c5ba4fe8bd49a9dd0599b0b151><d70f46c5ba4fe8bd49a9dd0599b0b151>]
 --39aa294acba996517c87259618d1153df4ef812cfa2f2e627e7865844fcf--
 ```
+
+#### Response
+
+```json
+{
+  "uri" : "https://platform.devtest.ringcentral.com/restapi/v1.0/account/111111111/extension/222222222/message-store/333333333",
+  "id" : 4444444444,
+  "to" : [ {
+    "phoneNumber" : "+16505551212",
+    "location" : "Redwood City, CA"
+  } ],
+  "type" : "Fax",
+  "creationTime" : "2015-05-09T16:11:58.000Z",
+  "readStatus" : "Unread",
+  "priority" : "Normal",
+  "attachments" : [ {
+    "id" : 4444444444,
+    "uri" : "https://platform.devtest.ringcentral.com/restapi/v1.0/account/111111111/extension/222222222/message-store/333333333/content/4444444444",
+    "type" : "RenderedDocument",
+    "contentType" : "image/tiff"
+  } ],
+  "direction" : "Outbound",
+  "availability" : "Alive",
+  "messageStatus" : "Queued",
+  "faxResolution" : "High",
+  "faxPageCount" : 0,
+  "lastModifiedTime" : "2015-05-09T16:11:58.519Z"
+}
+```
+
+#### Retrieval
+
+The following code can be used to download and save a fax.
+
+Note: this example uses `net/httputil` from `gotilla`.
+
+```go
+import (
+	"net/http"
+	"net/url"
+
+	"github.com/grokify/gotilla/net/httputil"
+)
+
+fileUrl := "https://platform.devtest.ringcentral.com/restapi/v1.0/account/111111111/extension/222222222/message-store/333333333/content/4444444444"
+
+resp, _ := platform.Get(fileUrl, url.Values{}, []byte{}, http.Header{})
+body, _ := httputil.ResponseBody(resp)
+
+err := ioutil.WriteFile("/path/to/test_file_out.pdf", body, 0644)
+```
