@@ -46,6 +46,8 @@ This example sends the included `test_file.pdf` as `Content-Type: application/oc
 ##### Go Request
 
 ```go
+// import rcsdk, instantiate SDK, retrieve platform object and authorize user here
+
 fax := requesthelpers.NewReqHelperFaxFile([]byte(`{ 
 	"to" : [{"phoneNumber": "16505551212"}],
 	"faxResolution" : "High"
@@ -140,6 +142,8 @@ The following code can be used to download and save a fax.
 Note: this example uses `net/httputil` from `gotilla`.
 
 ```go
+// import rcsdk, instantiate SDK, retrieve platform object and authorize user here
+
 import (
 	"net/http"
 	"net/url"
