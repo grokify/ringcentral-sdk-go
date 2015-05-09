@@ -58,7 +58,7 @@ fax := requesthelpers.NewReqHelperFaxFile([]byte(`{
 POST https://platform.ringcentral.com/restapi/v1.0/account/~/extension/~/fax HTTP/1.1
 Authorization: Bearer U0pDMDFQMDFQQVMwMnxBQUFWZmY4ZXoxMlh
 Accept: application/json
-Content-Type: multipart/mixed; boundar=39aa294acba996517c87259618d1153df4ef812cfa2f2e627e7865844fcf
+Content-Type: multipart/mixed; boundary=39aa294acba996517c87259618d1153df4ef812cfa2f2e627e7865844fcf
 
 --39aa294acba996517c87259618d1153df4ef812cfa2f2e627e7865844fcf
 Content-Type: application/json
