@@ -36,14 +36,18 @@ func (fax *ReqHelperFaxFile) build() {
 	fax.setHeaders()
 }
 
-func (fax *ReqHelperFaxFile) SetMetadata(metadata []byte) {
+func (fax *ReqHelperFaxFile) SetMetadata(metadata []byte) error {
 	// MIME HEADER
 	metaHead := textproto.MIMEHeader{}
 	metaHead.Add("Content-Type", "application/json")
 
 	// MIME PART
-	metaPart, _ := fax.writer.CreatePart(metaHead)
+	metaPart, err := fax.writer.CreatePart(metaHead)
+	if err != nil {
+		return err
+	}
 	metaPart.Write(metadata)
+	return nil
 }
 
 func (fax *ReqHelperFaxFile) SetFile(path string) error {
@@ -65,7 +69,10 @@ func (fax *ReqHelperFaxFile) SetFile(path string) error {
 	}
 
 	// FILE PART
-	filePart, _ := fax.writer.CreatePart(fileHead)
+	filePart, err := fax.writer.CreatePart(fileHead)
+	if err != nil {
+		return err
+	}
 	filePart.Write(bytes)
 	return nil
 }
