@@ -58,6 +58,8 @@ platform.Authorize('+16505551212','101','yourPassword')
 
 To fax a file, it is recommended to use the fax request helper which will create the required HTTP request body and headers.
 
+More information on usage is available in `./rcsdk/helpers/requesthelpers/README.md`.
+
 ```go
 import(
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/helpers/requesthelpers"
