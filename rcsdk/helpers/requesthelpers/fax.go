@@ -53,20 +53,20 @@ func (fax *ReqHelperFaxFile) SetFile(path string) error {
 		return err
 	}
 
-	// BODY HEAD
+	// FILE HEAD
 	_, filename := filepath.Split(path)
 
-	bodyHead := textproto.MIMEHeader{}
-	bodyHead.Add("Content-Type", "application/octet-stream")
+	fileHead := textproto.MIMEHeader{}
+	fileHead.Add("Content-Type", "application/octet-stream")
 	if len(filename) > 0 {
-		bodyHead.Add("Content-Disposition", strings.Join([]string{`attachment; filename="`, filename, `"`}, ""))
+		fileHead.Add("Content-Disposition", strings.Join([]string{`attachment; filename="`, filename, `"`}, ""))
 	} else {
-		bodyHead.Add("Content-Disposition", "attachment")
+		fileHead.Add("Content-Disposition", "attachment")
 	}
 
-	// BODY PART
-	bodyPart, _ := fax.writer.CreatePart(bodyHead)
-	bodyPart.Write(bytes)
+	// FILE PART
+	filePart, _ := fax.writer.CreatePart(fileHead)
+	filePart.Write(bytes)
 	return nil
 }
 
