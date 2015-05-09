@@ -52,7 +52,6 @@ func (req *Request) Send() (*corehttp.Response, error) {
 
 	corereq.Header = req.headers
 	corereq.Header.Add("Accept", JSON_CONTENT_TYPE)
-	corereq.Header.Add("Content-Type", JSON_CONTENT_TYPE)
 
 	// RESPONSE
 	client := &corehttp.Client{}

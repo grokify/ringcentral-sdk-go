@@ -49,6 +49,25 @@ The `username` should be a phone number in E.164 format with or without the lead
 platform.Authorize('+16505551212','101','yourPassword')
 ```
 
+# Fax
+
+## Fax File
+
+To fax a file, it is recommended to use the fax request helper which will create the required HTTP request body and headers.
+
+```go
+import(
+	"github.com/grokify/ringcentral-sdk-go/rcsdk/helpers/request"
+)
+
+fax := requesthelpers.NewReqHelperFaxFile([]byte(`{ 
+	"to" : [{"phoneNumber": "16505551212"}],
+	"faxResolution" : "High"
+}`), "/path/to/myfile.pdf")
+
+resp, _ := platform.Post("/account/~/extension/~/fax", url.Values{}, fax.GetBody(), fax.GetHeaders())
+```
+
 # SMS
 
 In order to send an SMS using the API, make a POST request to `/account/~/extension/~/sms`:
