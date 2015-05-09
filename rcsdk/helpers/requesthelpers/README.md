@@ -16,8 +16,15 @@ The fax file helper takes a metadata byte array along with a file path and creat
 
 ```go
 import(
+	"github.com/grokify/ringcentral-sdk-go/rcsdk"
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/helpers/requesthelpers"
 )
+
+sdk := rcsdk.NewSdk("yourAppKey", "yourAppSecret", "https://platform.devtest.ringcentral.com")
+
+platform := sdk.GetPlatform();
+
+platform.Authorize('+16505551212','101','yourPassword')
 
 fax := requesthelpers.NewReqHelperFaxFile([]byte(`{ 
 	"to" : [{"phoneNumber": "16505551212"}],
