@@ -37,9 +37,11 @@ resp, _ := platform.Post("/account/~/extension/~/fax", url.Values{}, fax.GetBody
 
 The following examples use the test files included in this repository, including `test_file.pdf`.
 
-### Request 1: PDF
+### Example 1: PDF
 
-#### Example Request
+This example sends the included `test_file.pdf` as `Content-Type: application/octet-stream`. This content type is recommended for production use as it is smaller than the alternative base64 encoding.
+
+#### Request
 
 ##### Go Request
 
@@ -56,8 +58,7 @@ fax := requesthelpers.NewReqHelperFaxFile([]byte(`{
 POST https://platform.ringcentral.com/restapi/v1.0/account/~/extension/~/fax HTTP/1.1
 Authorization: Bearer U0pDMDFQMDFQQVMwMnxBQUFWZmY4ZXoxMlh
 Accept: application/json
-Content-Type: application/octet-stream
-Content-Disposition: attachment; filename="test_file.pdf"
+Content-Type: multipart/mixed; boundar=39aa294acba996517c87259618d1153df4ef812cfa2f2e627e7865844fcf
 
 --39aa294acba996517c87259618d1153df4ef812cfa2f2e627e7865844fcf
 Content-Type: application/json
