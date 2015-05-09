@@ -108,6 +108,8 @@ c#??ϣ????|              ʿ?\?K            ??b?M~'???f?6
 
 #### Response
 
+Faxes are queued by RingCentral and a successful response will include the property `"messageStatus" : "Queued"` as shown below. To verify a fax has been set correctly poll the messaage `uri` provided for an updated `messageStatus`. Upon success, the `messageStatus` property will be updated to `"messageStatus" : "Sent"`.
+
 ```json
 {
   "uri" : "https://platform.devtest.ringcentral.com/restapi/v1.0/account/111111111/extension/222222222/message-store/333333333",
