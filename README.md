@@ -10,7 +10,9 @@
 
 # Overview
 
-This is a alpha SDK for the RingCentral for Developers platform. It attempts to mirror the structure of the official RingCentral SDKs. As an alpha, many parts of the SDK are not yet implemented yet.
+This is an in-development SDK for the RingCentral for Developers platform. At present, it is used for testing purposes only. Many parts of this SDK are not yet implemented and are subject to breaking changes. Use at your own risk.
+
+It attempts to mirror the structure of the official RingCentral SDKs. 
 
 # Installation
 
