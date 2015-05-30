@@ -63,6 +63,7 @@ More information on usage is available in `./rcsdk/helpers/faxrequest/README.md`
 ```go
 import(
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/helpers/faxrequest"
+	obj "github.com/grokify/ringcentral-sdk-go/rcsdk/helpers/objects"
 )
 
 fax, err := faxrequest.NewRequestHelper(faxrequest.Metadata{
