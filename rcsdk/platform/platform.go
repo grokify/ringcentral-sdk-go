@@ -3,8 +3,10 @@ package platform
 import (
 	"encoding/base64"
 	"encoding/json"
+	"errors"
 	"net/http"
 	"net/url"
+	"strconv"
 	"strings"
 
 	"github.com/grokify/gotilla/net/httputil"
@@ -50,17 +52,25 @@ func (p *Platform) ApiUrl(url string) string {
 
 func (p *Platform) Authorize(username string, extension string, password string, remember bool) (*http.Response, error) {
 	res, err := p.authCall(username, extension, password)
-	if err == nil {
-		data, err2 := httputil.ResponseBody(res)
-		if err2 != nil {
-			return res, err2
-		}
-		authData, err3 := NewAuthCallResponseData(data)
-		if err3 != nil {
-			return res, err3
-		}
-		p.auth.SetData(authData)
+	if err != nil {
+		return res, err
 	}
+
+	if res.StatusCode >= 300 || res.StatusCode < 200 {
+		err = errors.New("HTTP_RESPONSE_ERROR " + strconv.Itoa(res.StatusCode))
+		return res, err
+	}
+
+	data, err := httputil.ResponseBody(res)
+	if err != nil {
+		return res, err
+	}
+	authData, err := NewAuthCallResponseData(data)
+	if err != nil {
+		return res, err
+	}
+	p.auth.SetData(authData)
+
 	return res, err
 }
 
@@ -83,7 +93,6 @@ func (p *Platform) apiCall(req rchttp.Request) (*http.Response, error) {
 }
 
 func (p *Platform) authCall(username string, extension string, password string) (*http.Response, error) {
-	client := &http.Client{}
 
 	// URL
 	tokenUrl := strings.Join([]string{p.server, TOKEN_ENDPOINT}, "")
@@ -104,6 +113,7 @@ func (p *Platform) authCall(username string, extension string, password string) 
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8")
 
 	// RESPONSE
+	client := &http.Client{}
 	return client.Do(req)
 }
 
