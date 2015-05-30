@@ -69,7 +69,8 @@ fax, err := faxrequest.NewRequestHelper(faxrequest.Metadata{
 	To: []obj.CallerInfo{
 		obj.CallerInfo{PhoneNumber: "+16505626570"}},
 	CoverPageText: "RingCentral fax PDF file example in Go!"})
-err = fax.AddFile("/path/to/myfile.pdf")
+err = fax.AddFile("/path/to/myfile1.pdf")
+err = fax.AddFile("/path/to/myfile2.pdf")
 err = fax.Finalize()
 
 resp, err := platform.Post("/account/~/extension/~/fax", url.Values{}, fax.GetBody(), fax.GetHeaders())

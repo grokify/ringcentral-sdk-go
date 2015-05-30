@@ -23,12 +23,15 @@ sdk := rcsdk.NewSdk("yourAppKey", "yourAppSecret", "https://platform.devtest.rin
 
 platform := sdk.GetPlatform();
 
-platform.Authorize("+16505551212", "101", "yourPassword", true)
+platform.Authorize("16505551212", "101", "yourPassword", true)
 
-fax, _ := requesthelpers.NewReqHelperFaxFile([]byte(`{ 
-	"to" : [{"phoneNumber": "16505551212"}],
-	"faxResolution" : "High"
-}`), "/path/to/myfile.pdf")
+fax, err := faxrequest.NewRequestHelper(faxrequest.Metadata{
+  To: []obj.CallerInfo{
+    obj.CallerInfo{PhoneNumber: "+16505551212"}},
+  CoverPageText: "RingCentral fax PDF file example in Go!"})
+err = fax.AddFile("/path/to/myfile1.pdf")
+err = fax.AddFile("/path/to/myfile2.pdf")
+err = fax.Finalize()
 
 resp, err := platform.Post("/account/~/extension/~/fax", url.Values{}, fax.GetBody(), fax.GetHeaders())
 ```
@@ -48,10 +51,13 @@ This example sends the included `test_file.pdf` as `Content-Type: application/oc
 ```go
 // import rcsdk, instantiate SDK, retrieve platform object and authorize user here
 
-fax, _ := requesthelpers.NewReqHelperFaxFile([]byte(`{ 
-	"to" : [{"phoneNumber": "16505551212"}],
-	"faxResolution" : "High"
-}`), "/path/to/test_file.pdf")
+fax, err := faxrequest.NewRequestHelper(faxrequest.Metadata{
+  To: []obj.CallerInfo{
+    obj.CallerInfo{PhoneNumber: "+16505551212"}},
+  CoverPageText: "RingCentral fax PDF file example in Go!"})
+err = fax.AddFile("/path/to/myfile1.pdf")
+err = fax.AddFile("/path/to/myfile2.pdf")
+err = fax.Finalize()
 
 resp, err := platform.Post("/account/~/extension/~/fax", url.Values{}, fax.GetBody(), fax.GetHeaders())
 ```
