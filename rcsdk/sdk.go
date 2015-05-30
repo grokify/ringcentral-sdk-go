@@ -5,7 +5,7 @@ import (
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/platform"
 )
 
-const RC_SERVER_PRODUCTION string = "https://platform.ringcentral.com:443"
+const RC_SERVER_PRODUCTION string = "https://platform.ringcentral.com"
 const RC_SERVER_SANDBOX string = "https://platform.devtest.ringcentral.com:443"
 
 type Sdk struct {
