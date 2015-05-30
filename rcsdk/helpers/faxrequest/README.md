@@ -16,7 +16,7 @@ The fax file helper takes a metadata byte array along with a file path and creat
 ```go
 import(
 	"github.com/grokify/ringcentral-sdk-go/rcsdk"
-	"github.com/grokify/ringcentral-sdk-go/rcsdk/helpers/requesthelpers"
+	"github.com/grokify/ringcentral-sdk-go/rcsdk/helpers/faxrequest"
 )
 
 sdk := rcsdk.NewSdk("yourAppKey", "yourAppSecret", "https://platform.devtest.ringcentral.com")
