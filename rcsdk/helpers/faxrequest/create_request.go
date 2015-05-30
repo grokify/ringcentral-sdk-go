@@ -23,7 +23,6 @@ type Metadata struct {
 
 type RequestHelper struct {
 	metadata   Metadata
-	filename   string
 	writer     *multipart.Writer
 	headers    http.Header
 	bodyBuffer *bytes.Buffer
