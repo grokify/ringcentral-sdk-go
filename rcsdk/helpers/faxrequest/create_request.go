@@ -103,6 +103,25 @@ func (fax *RequestHelper) AddFile(path string) error {
 	return err
 }
 
+func (fax *RequestHelper) AddText(bytes []byte, content_type string) error {
+
+	if len(content_type) == 0 {
+		content_type = "text/plain"
+	}
+
+	// FILE HEAD
+	headers := textproto.MIMEHeader{}
+	headers.Add("Content-Type", content_type)
+
+	// FILE PART
+	part, err := fax.writer.CreatePart(headers)
+	if err != nil {
+		return err
+	}
+	_, err = part.Write(bytes)
+	return err
+}
+
 func (fax *RequestHelper) setHeaders() {
 	fax.headers = http.Header{}
 	fax.headers.Add("Content-Type", strings.Join([]string{"multipart/mixed; boundary=", fax.writer.Boundary()}, ""))
