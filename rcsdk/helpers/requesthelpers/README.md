@@ -23,7 +23,7 @@ sdk := rcsdk.NewSdk("yourAppKey", "yourAppSecret", "https://platform.devtest.rin
 
 platform := sdk.GetPlatform();
 
-platform.Authorize('+16505551212','101','yourPassword')
+platform.Authorize("+16505551212", "101", "yourPassword", true)
 
 fax, _ := requesthelpers.NewReqHelperFaxFile([]byte(`{ 
 	"to" : [{"phoneNumber": "16505551212"}],
