@@ -114,12 +114,12 @@ More information on usage is available in `./rcsdk/helpers/faxrequest/README.md`
 ```go
 import(
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/helpers/faxrequest"
-	obj "github.com/grokify/ringcentral-sdk-go/rcsdk/helpers/objects"
+	"github.com/grokify/ringcentral-sdk-go/rcsdk/helpers/info"
 )
 
 fax, err := faxrequest.NewRequestHelper(faxrequest.Metadata{
-	To: []obj.CallerInfo{
-		obj.CallerInfo{PhoneNumber: "+16505626570"}},
+	To: []info.Caller{
+		info.Caller{PhoneNumber: "+16505626570"}},
 	CoverPageText: "RingCentral fax example in Go!"})
 err = fax.AddText([]byte("Hello World!"), "text/plain")
 err = fax.AddFile("/path/to/myfile1.pdf")

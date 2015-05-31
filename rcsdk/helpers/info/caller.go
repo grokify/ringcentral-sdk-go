@@ -1,6 +1,6 @@
-package objects
+package info
 
-type CallerInfo struct {
+type Caller struct {
 	PhoneNumber     string `json:"phoneNumber,omitempty"`
 	ExtensionNumber string `json:"extensionNumber,omitempty"`
 	Location        string `json:"location,omitempty"`

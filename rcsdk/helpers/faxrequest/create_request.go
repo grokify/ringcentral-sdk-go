@@ -10,15 +10,15 @@ import (
 	"path/filepath"
 	"strings"
 
-	obj "github.com/grokify/ringcentral-sdk-go/rcsdk/helpers/objects"
+	"github.com/grokify/ringcentral-sdk-go/rcsdk/helpers/info"
 )
 
 type Metadata struct {
-	To            []obj.CallerInfo `json:"to,omitempty"`
-	FaxResolution string           `json:"faxResolution,omitempty"`
-	SendTime      string           `json:"sendTime,omitempty"`
-	CoverIndex    int8             `json:"coverIndex,omitempty"`
-	CoverPageText string           `json:"coverPageText,omitempty"`
+	To            []info.Caller `json:"to,omitempty"`
+	FaxResolution string        `json:"faxResolution,omitempty"`
+	SendTime      string        `json:"sendTime,omitempty"`
+	CoverIndex    int8          `json:"coverIndex,omitempty"`
+	CoverPageText string        `json:"coverPageText,omitempty"`
 }
 
 type RequestHelper struct {
