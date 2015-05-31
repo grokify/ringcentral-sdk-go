@@ -23,9 +23,11 @@ RingCentral SDK in Go
 
 ## Overview
 
-This is an in-development SDK for the RingCentral for Developers platform. At present, it is used for testing purposes only. Many parts of this SDK are not yet implemented and are subject to breaking changes. Use at your own risk.
+This is an unofficial Go SDK for the RingCentral for Developers Platform REST API (https://developers.ringcentral.com).
 
-It attempts to mirror the structure of the official RingCentral SDKs. 
+The core SDK objects follow the general design of the official RingCentral SDKs. Additional functionality is provided for ease of use including request helpers.
+
+This SDK is an early stage library and subject to breaking changes.
 
 ### Included
 
