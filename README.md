@@ -27,6 +27,20 @@ This is an in-development SDK for the RingCentral for Developers platform. At pr
 
 It attempts to mirror the structure of the official RingCentral SDKs. 
 
+### Included
+
+* OAuth2 authorization
+* Generic API requests
+* Fax request helper to create multipart/mixed messages
+
+### To Do
+
+The following items are still needed for this SDK. Contributions are most welcome.
+
+* OAuth2 token refresh
+* Subscriptions
+* Tests
+
 ## Installation
 
 ```bash
