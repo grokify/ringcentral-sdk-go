@@ -2,6 +2,7 @@ RingCentral SDK in Go
 =====================
 
 [![Build Status](https://img.shields.io/travis/grokify/ringcentral-sdk-go/master.svg)](https://travis-ci.org/grokify/ringcentral-sdk-go)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/grokify/ringcentral-sdk-go/master/LICENSE.txt)
 
 ## Table of contents
 
