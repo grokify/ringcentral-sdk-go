@@ -118,8 +118,7 @@ import(
 )
 
 fax, err := faxrequest.NewRequestHelper(faxrequest.Metadata{
-	To: []info.Caller{
-		info.Caller{PhoneNumber: "+16505626570"}},
+	To:            []info.Caller{info.Caller{PhoneNumber: "+16505626570"}},
 	CoverPageText: "RingCentral fax example in Go!"})
 err = fax.AddText([]byte("Hello World!"), "text/plain")
 err = fax.AddFile("/path/to/myfile1.pdf")

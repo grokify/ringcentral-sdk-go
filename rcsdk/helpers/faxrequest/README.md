@@ -27,8 +27,7 @@ platform := sdk.GetPlatform();
 platform.Authorize("16505551212", "101", "yourPassword", true)
 
 fax, err := faxrequest.NewRequestHelper(faxrequest.Metadata{
-  To: []info.Caller{
-    info.Caller{PhoneNumber: "+16505551212"}},
+  To:            []info.Caller{info.Caller{PhoneNumber: "+16505551212"}},
   CoverPageText: "RingCentral fax PDF file example in Go!"})
 err = fax.AddText([]byte("Hello World!"), "text/plain")
 err = fax.AddFile("/path/to/myfile1.pdf")
@@ -54,8 +53,7 @@ This example sends the included `test_file.pdf` as `Content-Type: application/oc
 // import rcsdk, instantiate SDK, retrieve platform object and authorize user here
 
 fax, err := faxrequest.NewRequestHelper(faxrequest.Metadata{
-  To: []info.Caller{
-    info.Caller{PhoneNumber: "+16505551212"}},
+  To:            []info.Caller{info.Caller{PhoneNumber: "+16505551212"}},
   CoverPageText: "RingCentral fax PDF file example in Go!"})
 err = fax.AddFile("/path/to/myfile1.pdf")
 err = fax.AddFile("/path/to/myfile2.pdf")
