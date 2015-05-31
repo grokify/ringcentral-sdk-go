@@ -127,6 +127,16 @@ func (p *Platform) Post(url string, queryParameters url.Values, body []byte, hea
 	return p.apiCall(rcreq)
 }
 
+func (p *Platform) Put(url string, queryParameters url.Values, body []byte, headers http.Header) (*http.Response, error) {
+	rcreq := p.context.GetRequest("PUT", url, queryParameters, body, headers)
+	return p.apiCall(rcreq)
+}
+
+func (p *Platform) Delete(url string, queryParameters url.Values, body []byte, headers http.Header) (*http.Response, error) {
+	rcreq := p.context.GetRequest("DELETE", url, queryParameters, body, headers)
+	return p.apiCall(rcreq)
+}
+
 type AuthCallResponseData struct {
 	AccessToken           string `json:"access_token"`
 	TokenType             string `json:"token_type"`
