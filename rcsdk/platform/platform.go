@@ -4,6 +4,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"errors"
+	"io"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -87,8 +88,10 @@ func (p *Platform) getAuthHeader() string {
 func (p *Platform) apiCall(req rchttp.Request) (*http.Response, error) {
 	p.IsAuthorized()
 
-	req.SetHeader("Authorization", p.getAuthHeader())
-	req.SetUrl(p.ApiUrl(req.GetUrl()))
+	head := req.Headers()
+	head.Add("Authorization", p.getAuthHeader())
+
+	req.SetUrl(p.ApiUrl(req.Url()))
 	return req.Send()
 }
 
@@ -117,22 +120,28 @@ func (p *Platform) authCall(username string, extension string, password string) 
 	return client.Do(req)
 }
 
-func (p *Platform) Get(url string, queryParameters url.Values, body []byte, headers http.Header) (*http.Response, error) {
+func (p *Platform) Send(req rchttp.Request) (*http.Response, error) {
+	rcreq := p.context.GetRequest(strings.ToUpper(req.Method()), req.Url(), req.Query(), req.Body(), req.Headers())
+	return p.apiCall(req)
+	return p.apiCall(rcreq)
+}
+
+func (p *Platform) Get(url string, queryParameters url.Values, body io.Reader, headers http.Header) (*http.Response, error) {
 	rcreq := p.context.GetRequest("GET", url, queryParameters, body, headers)
 	return p.apiCall(rcreq)
 }
 
-func (p *Platform) Post(url string, queryParameters url.Values, body []byte, headers http.Header) (*http.Response, error) {
+func (p *Platform) Post(url string, queryParameters url.Values, body io.Reader, headers http.Header) (*http.Response, error) {
 	rcreq := p.context.GetRequest("POST", url, queryParameters, body, headers)
 	return p.apiCall(rcreq)
 }
 
-func (p *Platform) Put(url string, queryParameters url.Values, body []byte, headers http.Header) (*http.Response, error) {
+func (p *Platform) Put(url string, queryParameters url.Values, body io.Reader, headers http.Header) (*http.Response, error) {
 	rcreq := p.context.GetRequest("PUT", url, queryParameters, body, headers)
 	return p.apiCall(rcreq)
 }
 
-func (p *Platform) Delete(url string, queryParameters url.Values, body []byte, headers http.Header) (*http.Response, error) {
+func (p *Platform) Delete(url string, queryParameters url.Values, body io.Reader, headers http.Header) (*http.Response, error) {
 	rcreq := p.context.GetRequest("DELETE", url, queryParameters, body, headers)
 	return p.apiCall(rcreq)
 }

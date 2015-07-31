@@ -3,25 +3,32 @@ package faxrequest
 import (
 	"bytes"
 	"encoding/json"
+	"io"
 	"io/ioutil"
 	"mime/multipart"
 	"net/http"
 	"net/textproto"
+	"net/url"
 	"path/filepath"
 	"strings"
 
-	"github.com/grokify/ringcentral-sdk-go/rcsdk/helpers/info"
+	"github.com/grokify/ringcentral-sdk-go/rcsdk/models"
+)
+
+const (
+	JSON_CONTENT_TYPE = "application/json"
 )
 
 type Metadata struct {
-	To            []info.Caller `json:"to,omitempty"`
-	FaxResolution string        `json:"faxResolution,omitempty"`
-	SendTime      string        `json:"sendTime,omitempty"`
-	CoverIndex    int8          `json:"coverIndex,omitempty"`
-	CoverPageText string        `json:"coverPageText,omitempty"`
+	To            []models.CallerInfo `json:"to,omitempty"`
+	FaxResolution string              `json:"faxResolution,omitempty"`
+	SendTime      string              `json:"sendTime,omitempty"`
+	CoverIndex    int8                `json:"coverIndex,omitempty"`
+	CoverPageText string              `json:"coverPageText,omitempty"`
 }
 
-type RequestHelper struct {
+type FaxRequest struct {
+	url        string
 	metadata   Metadata
 	writer     *multipart.Writer
 	headers    http.Header
@@ -29,9 +36,11 @@ type RequestHelper struct {
 	body       []byte
 }
 
-func NewRequestHelper(metadata Metadata) (RequestHelper, error) {
-	fax := RequestHelper{}
+func NewFaxRequest(urlpath string, metadata Metadata) (FaxRequest, error) {
+	fax := FaxRequest{url: urlpath}
+	fax.url = urlpath
 	fax.initialize()
+
 	err := fax.SetMetadata(metadata)
 	if err != nil {
 		return fax, err
@@ -39,12 +48,12 @@ func NewRequestHelper(metadata Metadata) (RequestHelper, error) {
 	return fax, nil
 }
 
-func (fax *RequestHelper) initialize() {
+func (fax *FaxRequest) initialize() {
 	fax.bodyBuffer = &bytes.Buffer{}
 	fax.writer = multipart.NewWriter(fax.bodyBuffer) // io.Writer
 }
 
-func (fax *RequestHelper) Finalize() error {
+func (fax *FaxRequest) Finalize() error {
 	err := fax.writer.Close()
 	if err != nil {
 		return err
@@ -54,7 +63,7 @@ func (fax *RequestHelper) Finalize() error {
 	return nil
 }
 
-func (fax *RequestHelper) SetMetadata(metadata Metadata) error {
+func (fax *FaxRequest) SetMetadata(metadata Metadata) error {
 	fax.metadata = metadata
 
 	// MIME HEADER
@@ -74,7 +83,7 @@ func (fax *RequestHelper) SetMetadata(metadata Metadata) error {
 	return err
 }
 
-func (fax *RequestHelper) AddFile(path string) error {
+func (fax *FaxRequest) AddFile(path string) error {
 
 	// READ FILE
 	bytes, err := ioutil.ReadFile(path)
@@ -102,7 +111,7 @@ func (fax *RequestHelper) AddFile(path string) error {
 	return err
 }
 
-func (fax *RequestHelper) AddText(bytes []byte, content_type string) error {
+func (fax *FaxRequest) AddText(bytes []byte, content_type string) error {
 
 	if len(content_type) == 0 {
 		content_type = "text/plain"
@@ -121,15 +130,47 @@ func (fax *RequestHelper) AddText(bytes []byte, content_type string) error {
 	return err
 }
 
-func (fax *RequestHelper) setHeaders() {
+func (fax *FaxRequest) setHeaders() {
 	fax.headers = http.Header{}
 	fax.headers.Add("Content-Type", strings.Join([]string{"multipart/mixed; boundary=", fax.writer.Boundary()}, ""))
 }
 
-func (fax *RequestHelper) GetHeaders() http.Header {
+func (fax *FaxRequest) Method() string {
+	return "POST"
+}
+
+func (fax *FaxRequest) Path() string {
+	return ""
+}
+
+func (fax *FaxRequest) Url() string {
+	return fax.url
+}
+
+func (fax *FaxRequest) SetUrl(url string) {
+	fax.url = url
+}
+
+func (fax *FaxRequest) Query() url.Values {
+	return url.Values{}
+}
+
+func (fax *FaxRequest) Headers() http.Header {
 	return fax.headers
 }
 
-func (fax *RequestHelper) GetBody() []byte {
-	return fax.body
+func (fax *FaxRequest) Body() io.Reader {
+	return bytes.NewReader(fax.body)
+}
+
+func (req *FaxRequest) Send() (*http.Response, error) {
+	// REQUEST
+	r, _ := http.NewRequest(req.Method(), req.Url(), req.Body())
+
+	r.Header = req.Headers()
+	r.Header.Add("Accept", JSON_CONTENT_TYPE)
+
+	// RESPONSE
+	client := &http.Client{}
+	return client.Do(r)
 }

@@ -1,6 +1,7 @@
 package core
 
 import (
+	"io"
 	"net/http"
 	"net/url"
 
@@ -15,7 +16,8 @@ func NewContext() Context {
 	return c
 }
 
-func (c *Context) GetRequest(method string, url string, queryParams url.Values, body []byte, headers http.Header) rchttp.Request {
-	rcreq := rchttp.NewRequest(method, url, queryParams, body, headers)
-	return rcreq
+func (c *Context) GetRequest(method string, url string, queryParams url.Values, body io.Reader, headers http.Header) rchttp.Request {
+	//rcreq := rchttp.NewRequest(method, url, queryParams, body, headers)
+	rcreq := rchttp.BaseRequest{}
+	return &rcreq
 }
