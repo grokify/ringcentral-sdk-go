@@ -99,14 +99,12 @@ func (rs *CallLogRecordsCsv) GetStatsForVoiceRecordings() CallLogStats {
 			dt, err := time.Parse(time.RFC3339, rec.TimeRfc3339)
 			if err == nil {
 				dt14 := timeutil.Dt14ForTime(dt)
-				//fmt.Println(dt14)
 				if stats.Dt14Start < 0 || dt14 < stats.Dt14Start {
 					stats.Dt14Start = dt14
 				}
 				if stats.Dt14End < 0 || dt14 > stats.Dt14Start {
 					stats.Dt14End = dt14
 				}
-				//panic("B")
 			}
 		}
 	}
