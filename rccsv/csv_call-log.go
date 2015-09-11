@@ -69,12 +69,16 @@ func (s *CallLogStats) Inflate() {
 			}
 		}
 	}
-	s.TotalMinutes = float32(s.TotalSeconds / 60)
-	s.TotalHours = float32(s.TotalSeconds / 60 / 60)
-	s.AverageMinutes = s.TotalMinutes / float32(s.NumCalls)
-	s.DailyCalls = float32(s.NumCalls) / float32(s.Days)
-	s.DailyMinutes = s.DailyCalls * s.AverageMinutes
-	s.DailyHours = s.DailyMinutes / 60
+	if s.NumCalls > 0 {
+		s.TotalMinutes = float32(s.TotalSeconds / 60)
+		s.TotalHours = float32(s.TotalSeconds / 60 / 60)
+		s.AverageMinutes = s.TotalMinutes / float32(s.NumCalls)
+		if s.Days > 0 {
+			s.DailyCalls = float32(s.NumCalls) / float32(s.Days)
+			s.DailyMinutes = s.DailyCalls * s.AverageMinutes
+			s.DailyHours = s.DailyMinutes / 60
+		}
+	}
 }
 
 type CallLogRecordsCsv struct {
