@@ -204,7 +204,11 @@ func NewCallLogRecordsCsvReader() CallLogRecordsCsvReader {
 }
 
 func (rd *CallLogRecordsCsvReader) ReadFile(path string) error {
-	reader, file, err := csvutil.NewReader(path, ',')
+	return rd.ReadFileBom(path, false)
+}
+
+func (rd *CallLogRecordsCsvReader) ReadFileBom(path string, stripBom bool) error {
+	reader, file, err := csvutil.NewReader(path, ',', stripBom)
 	if err != nil {
 		return err
 	}
@@ -215,6 +219,10 @@ func (rd *CallLogRecordsCsvReader) ReadFile(path string) error {
 		if err == io.EOF {
 			break
 		} else if err != nil {
+			file.Close()
+			if err.Error() == "line 1, column 1: bare \" in non-quoted-field" {
+				return rd.ReadFileBom(path, true)
+			}
 			return err
 		}
 		if i == 0 {
