@@ -57,6 +57,9 @@ func NewCallLogStats(days int64) CallLogStats {
 }
 
 func (s *CallLogStats) Inflate() {
+	if s.NumCalls < 1 {
+		return
+	}
 	if s.Dt14Start > 0 && s.Dt14End > 0 && s.Dt14Start < s.Dt14End {
 		dtStart, err1 := timeutil.TimeForDt14(s.Dt14Start)
 		if err1 == nil {
@@ -69,15 +72,13 @@ func (s *CallLogStats) Inflate() {
 			}
 		}
 	}
-	if s.NumCalls > 0 {
-		s.TotalMinutes = float32(s.TotalSeconds / 60)
-		s.TotalHours = float32(s.TotalSeconds / 60 / 60)
-		s.AverageMinutes = s.TotalMinutes / float32(s.NumCalls)
-		if s.Days > 0 {
-			s.DailyCalls = float32(s.NumCalls) / float32(s.Days)
-			s.DailyMinutes = s.DailyCalls * s.AverageMinutes
-			s.DailyHours = s.DailyMinutes / 60
-		}
+	s.TotalMinutes = float32(s.TotalSeconds / 60)
+	s.TotalHours = float32(s.TotalSeconds / 60 / 60)
+	s.AverageMinutes = s.TotalMinutes / float32(s.NumCalls)
+	if s.Days > 0 {
+		s.DailyCalls = float32(s.NumCalls) / float32(s.Days)
+		s.DailyMinutes = s.DailyCalls * s.AverageMinutes
+		s.DailyHours = s.DailyMinutes / 60
 	}
 }
 
