@@ -13,6 +13,8 @@ package rccsv
 	stats := csv.CallLogRecordsCsv.GetStatsForVoiceRecordings()
 
 	// NOTE on stripping UTF-8 BOM
+	https://github.com/golang/go/issues/9588
+	https://groups.google.com/forum/#!topic/golang-nuts/OToNIPdfkks
 	http://cautery.blogspot.com/2013/04/stripping-utf-8-byte-order-mark-with-go.html
 */
 
