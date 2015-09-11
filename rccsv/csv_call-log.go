@@ -220,7 +220,7 @@ func (rd *CallLogRecordsCsvReader) ReadFileBom(path string, stripBom bool) error
 			break
 		} else if err != nil {
 			file.Close()
-			if err.Error() == "line 1, column 1: bare \" in non-quoted-field" {
+			if stripBom == false && err.Error() == "line 1, column 1: bare \" in non-quoted-field" {
 				return rd.ReadFileBom(path, true)
 			}
 			return err
