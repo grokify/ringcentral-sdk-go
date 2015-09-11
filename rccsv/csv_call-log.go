@@ -11,6 +11,9 @@ package rccsv
 		fmt.Printf("ERR %v", err)
 	}
 	stats := csv.CallLogRecordsCsv.GetStatsForVoiceRecordings()
+
+	// NOTE on stripping UTF-8 BOM
+	http://cautery.blogspot.com/2013/04/stripping-utf-8-byte-order-mark-with-go.html
 */
 
 import (
