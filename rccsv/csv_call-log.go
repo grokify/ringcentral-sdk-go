@@ -46,18 +46,18 @@ type CallLogStats struct {
 }
 
 func NewCallLogStats(days int64) CallLogStats {
-	s := CallLogStats{}
-	s.Days = -1
-	s.NumCalls = 0
-	s.TotalSeconds = 0
-	s.TotalMinutes = 0.0
-	s.TotalHours = 0.0
-	s.AverageMinutes = 0.0
-	s.DailyCalls = 0.0
-	s.DailyMinutes = 0.0
-	s.DailyHours = 0.0
-	s.Dt14Start = -1
-	s.Dt14End = -1
+	s := CallLogStats{
+		Days:           -1,
+		NumCalls:       0,
+		TotalSeconds:   0,
+		TotalMinutes:   0.0,
+		TotalHours:     0.0,
+		AverageMinutes: 0.0,
+		DailyCalls:     0.0,
+		DailyMinutes:   0.0,
+		DailyHours:     0.0,
+		Dt14Start:      -1,
+		Dt14End:        -1}
 	return s
 }
 
