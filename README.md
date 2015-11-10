@@ -1,8 +1,8 @@
 RingCentral SDK in Go
 =====================
 
-[![Build Status](https://img.shields.io/travis/grokify/ringcentral-sdk-go/master.svg)](https://travis-ci.org/grokify/ringcentral-sdk-go)
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/grokify/ringcentral-sdk-go/master/LICENSE.txt)
+[![Docs][docs-godoc-svg]][docs-godoc-link]
+[![License][license-svg]][license-link]
 
 ## Table of contents
 
@@ -160,3 +160,8 @@ Please report these on [Github](https://github.com/grokify/ringcentral-sdk-go)
 RingCentral SDK is available under an MIT-style license. See {file:LICENSE.txt} for details.
 
 RingCentral SDK &copy; 2015 by John Wang
+
+ [docs-godoc-svg]: https://img.shields.io/badge/docs-godoc-blue.svg
+ [docs-godoc-link]: https://godoc.org/github.com/grokify/ringcentral-sdk-go
+ [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
+ [license-link]: https://github.com/grokify/ringcentral-sdk-go/blob/master/LICENSE.txt
