@@ -1,19 +1,19 @@
 package definitions
 
 type CallLogRecord struct {
-	Action           string        `json:"action,omitempty"`
-	Duration         int           `json:"duration,omitempty"`
-	LastModifiedTime string        `json:"lastModifiedTime,omitempty"`
-	To               CallerInfo    `json:"to,omitempty"`
-	Result           string        `json:"result,omitempty"`
-	Recording        RecordingInfo `json:"recording,omitempty"`
+	Id               string `json:"id,omitempty"`
+	LastModifiedTime string `json:"lastModifiedTime,omitempty"`
+	SessionId        string `json:"sessionId,omitempty"`
+	Type             string `json:"type,omitempty"`
+	Action           string `json:"action,omitempty"`
+	Result           string `json:"result,omitempty"`
 	Legs             `json:"legs,omitempty"`
-	Type             string     `json:"type,omitempty"`
-	From             CallerInfo `json:"from,omitempty"`
-	Direction        string     `json:"direction,omitempty"`
-	StartTime        string     `json:"startTime,omitempty"`
-	Transport        string     `json:"transport,omitempty"`
-	SessionId        string     `json:"sessionId,omitempty"`
-	Uri              string     `json:"uri,omitempty"`
-	Id               string     `json:"id,omitempty"`
+	StartTime        string        `json:"startTime,omitempty"`
+	Duration         int           `json:"duration,omitempty"`
+	Recording        RecordingInfo `json:"recording,omitempty"`
+	Uri              string        `json:"uri,omitempty"`
+	From             CallerInfo    `json:"from,omitempty"`
+	To               CallerInfo    `json:"to,omitempty"`
+	Direction        string        `json:"direction,omitempty"`
+	Transport        string        `json:"transport,omitempty"`
 }
