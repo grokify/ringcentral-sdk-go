@@ -1,14 +1,18 @@
 package requests
 
+import (
+	"github.com/grokify/ringcentral-sdk-go/rcsdk/definitions"
+)
+
 type AccountExtensionAnsweringrulePostRequestBody struct {
-	Name                    string                      `json:"name,omitempty"`
-	CalledNumbers           []CalledNumberInfo          `json:"calledNumbers,omitempty"`
-	Schedule                AnsweringRule_ScheduleInfo  `json:"schedule,omitempty"`
-	CallHandlingAction      string                      `json:"callHandlingAction,omitempty"`
-	Forwarding              ForwardingInfo              `json:"forwarding,omitempty"`
-	UnconditionalForwarding UnconditionalForwardingInfo `json:"unconditionalForwarding,omitempty"`
-	VoiceMail               VoicemailInfo               `json:"voiceMail,omitempty"`
-	Enabled                 bool                        `json:"enabled,omitempty"`
-	Type                    string                      `json:"type,omitempty"`
-	Callers                 []CallersInfo               `json:"callers,omitempty"`
+	Enabled                 bool                                    `json:"enabled,omitempty"`
+	Type                    string                                  `json:"type,omitempty"`
+	Name                    string                                  `json:"name,omitempty"`
+	Callers                 []definitions.CallersInfo               `json:"callers,omitempty"`
+	CallHandlingAction      string                                  `json:"callHandlingAction,omitempty"`
+	Forwarding              definitions.ForwardingInfo              `json:"forwarding,omitempty"`
+	VoiceMail               definitions.VoicemailInfo               `json:"voiceMail,omitempty"`
+	CalledNumbers           []definitions.CalledNumberInfo          `json:"calledNumbers,omitempty"`
+	Schedule                definitions.AnsweringRule_ScheduleInfo  `json:"schedule,omitempty"`
+	UnconditionalForwarding definitions.UnconditionalForwardingInfo `json:"unconditionalForwarding,omitempty"`
 }

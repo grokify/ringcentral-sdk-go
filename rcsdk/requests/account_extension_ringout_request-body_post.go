@@ -1,9 +1,13 @@
 package requests
 
+import (
+	"github.com/grokify/ringcentral-sdk-go/rcsdk/definitions"
+)
+
 type AccountExtensionRingoutPostRequestBody struct {
-	From       RingOut_Request_From        `json:"from,omitempty"`
-	To         RingOut_Request_To          `json:"to,omitempty"`
-	CallerId   RingOut_Request_To          `json:"callerId,omitempty"`
-	PlayPrompt bool                        `json:"playPrompt,omitempty"`
-	Country    RingOut_Request_CountryInfo `json:"country,omitempty"`
+	CallerId   definitions.RingOut_Request_To          `json:"callerId,omitempty"`
+	PlayPrompt bool                                    `json:"playPrompt,omitempty"`
+	Country    definitions.RingOut_Request_CountryInfo `json:"country,omitempty"`
+	From       definitions.RingOut_Request_From        `json:"from,omitempty"`
+	To         definitions.RingOut_Request_To          `json:"to,omitempty"`
 }

@@ -1,20 +1,20 @@
 package definitions
 
 type ExtensionInfo struct {
-	Id               string           `json:"id,omitempty"`
-	RegionalSettings RegionalSettings `json:"regionalSettings,omitempty"`
-	ServiceFeatures  `json:"serviceFeatures,omitempty"`
-	Uri              string      `json:"uri,omitempty"`
-	PartnerId        string      `json:"partnerId,omitempty"`
-	Contact          ContactInfo `json:"contact,omitempty"`
-	Name             string      `json:"name,omitempty"`
-	StatusInfo       StatusInfo  `json:"statusInfo,omitempty"`
-	Type             string      `json:"type,omitempty"`
-	SetupWizardState string      `json:"setupWizardState,omitempty"`
-	Status           string      `json:"status,omitempty"`
-	Departments      `json:"departments,omitempty"`
-	ExtensionNumber  string               `json:"extensionNumber,omitempty"`
-	Permissions      ExtensionPermissions `json:"permissions,omitempty"`
-	ProfileImage     ProfileImageInfo     `json:"profileImage,omitempty"`
-	References       `json:"references,omitempty"`
+	PartnerId        string                        `json:"partnerId,omitempty"`
+	ProfileImage     ProfileImageInfo              `json:"profileImage,omitempty"`
+	SetupWizardState string                        `json:"setupWizardState,omitempty"`
+	Status           string                        `json:"status,omitempty"`
+	StatusInfo       StatusInfo                    `json:"statusInfo,omitempty"`
+	Uri              string                        `json:"uri,omitempty"`
+	Departments      []DepartmentInfo              `json:"departments,omitempty"`
+	Name             string                        `json:"name,omitempty"`
+	Permissions      ExtensionPermissions          `json:"permissions,omitempty"`
+	References       []ReferenceInfo               `json:"references,omitempty"`
+	RegionalSettings RegionalSettings              `json:"regionalSettings,omitempty"`
+	Contact          ContactInfo                   `json:"contact,omitempty"`
+	ExtensionNumber  string                        `json:"extensionNumber,omitempty"`
+	ServiceFeatures  []ExtensionServiceFeatureInfo `json:"serviceFeatures,omitempty"`
+	Id               string                        `json:"id,omitempty"`
+	Type             string                        `json:"type,omitempty"`
 }

@@ -8,6 +8,30 @@ import (
 	"net/url"
 )
 
+type RequestInterface interface {
+}
+
+type Request2 struct {
+	Method  string
+	Path    string
+	Query   url.Values
+	URL     string
+	Body    io.Reader
+	Headers http.Header
+}
+
+func (req *Request2) Send() (*http.Response, error) {
+	// REQUEST
+	corereq, _ := http.NewRequest(req.Method, req.URL, req.Body)
+
+	corereq.Header = req.Headers
+	corereq.Header.Add("Accept", JSON_CONTENT_TYPE)
+
+	// RESPONSE
+	client := &http.Client{}
+	return client.Do(corereq)
+}
+
 type Request interface {
 	Method() string
 	Path() string

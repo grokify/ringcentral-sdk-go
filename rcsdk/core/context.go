@@ -19,5 +19,6 @@ func NewContext() Context {
 func (c *Context) GetRequest(method string, url string, queryParams url.Values, body io.Reader, headers http.Header) rchttp.Request {
 	//rcreq := rchttp.NewRequest(method, url, queryParams, body, headers)
 	rcreq := rchttp.BaseRequest{}
+	rcreq.SetUrl(url)
 	return &rcreq
 }

@@ -1,5 +1,9 @@
 package requests
 
+import (
+	"github.com/grokify/ringcentral-sdk-go/rcsdk/definitions"
+)
+
 type NumberpoolReservePostRequestBody struct {
-	Records []ReservePhoneNumber_Request_ReserveRecord `json:"records,omitempty"`
+	Records []definitions.ReservePhoneNumber_Request_ReserveRecord `json:"records,omitempty"`
 }

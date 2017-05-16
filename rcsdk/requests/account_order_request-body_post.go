@@ -1,5 +1,9 @@
 package requests
 
+import (
+	"github.com/grokify/ringcentral-sdk-go/rcsdk/definitions"
+)
+
 type AccountOrderPostRequestBody struct {
-	Devices []DeviceInfo `json:"devices,omitempty"`
+	Devices []definitions.DeviceInfo `json:"devices,omitempty"`
 }

@@ -4,11 +4,14 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"net/http"
 	"net/url"
 	"strconv"
 	"strings"
+
+	log "github.com/sirupsen/logrus"
 
 	"github.com/grokify/gotilla/net/httputil"
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/core"
@@ -31,13 +34,13 @@ type Platform struct {
 	server    string
 	appKey    string
 	appSecret string
-	auth      Auth
+	Auth      Auth
 	context   core.Context
 }
 
 func NewPlatform(context core.Context, appKey string, appSecret string, server string) Platform {
-	p := Platform{appKey: appKey, appSecret: appSecret, server: server, auth: NewAuth()}
-	p.auth = NewAuth()
+	p := Platform{appKey: appKey, appSecret: appSecret, server: server, Auth: NewAuth()}
+	p.Auth = NewAuth()
 	p.context = context
 	return p
 }
@@ -70,7 +73,7 @@ func (p *Platform) Authorize(username string, extension string, password string,
 	if err != nil {
 		return res, err
 	}
-	p.auth.SetData(authData)
+	p.Auth.SetData(authData)
 
 	return res, err
 }
@@ -82,7 +85,7 @@ func (p *Platform) GetApiKey() string {
 }
 
 func (p *Platform) getAuthHeader() string {
-	return strings.Join([]string{p.auth.GetTokenType(), p.auth.GetAccessToken()}, " ")
+	return strings.Join([]string{p.Auth.GetTokenType(), p.Auth.GetAccessToken()}, " ")
 }
 
 func (p *Platform) apiCall(req rchttp.Request) (*http.Response, error) {
@@ -91,7 +94,28 @@ func (p *Platform) apiCall(req rchttp.Request) (*http.Response, error) {
 	head := req.Headers()
 	head.Add("Authorization", p.getAuthHeader())
 
+	fmt.Printf("SDK_API_CALL_URL [%v]\n", p.ApiUrl(req.Url()))
+	log.WithFields(log.Fields{
+		"info": "SDK Request URL",
+	}).Info(p.ApiUrl(req.Url()))
+
 	req.SetUrl(p.ApiUrl(req.Url()))
+	return req.Send()
+}
+
+func (p *Platform) APICall(req rchttp.Request2) (*http.Response, error) {
+	p.IsAuthorized()
+
+	req.Headers.Add("Authorization", p.getAuthHeader())
+
+	fmt.Printf("SDK_API_CALL_URL [%v]\n", p.ApiUrl(req.URL))
+	log.WithFields(log.Fields{
+		"info": "SDK Request URL",
+	}).Info(p.ApiUrl(req.URL))
+
+	//req.SetUrl(p.ApiUrl(req.Url()))
+
+	req.URL = p.ApiUrl(req.URL)
 	return req.Send()
 }
 

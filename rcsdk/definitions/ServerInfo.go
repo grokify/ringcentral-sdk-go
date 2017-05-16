@@ -1,8 +1,8 @@
 package definitions
 
 type ServerInfo struct {
-	ServerVersion  string `json:"serverVersion,omitempty"`
-	ServerRevision string `json:"serverRevision,omitempty"`
-	Uri            string `json:"uri,omitempty"`
-	ApiVersions    `json:"apiVersions,omitempty"`
+	ServerRevision string        `json:"serverRevision,omitempty"`
+	Uri            string        `json:"uri,omitempty"`
+	ApiVersions    []VersionInfo `json:"apiVersions,omitempty"`
+	ServerVersion  string        `json:"serverVersion,omitempty"`
 }
