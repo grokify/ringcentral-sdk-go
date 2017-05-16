@@ -6,6 +6,6 @@ import (
 
 type AccountExtensionSmsPostRequestBody struct {
 	From definitions.CallerInfo   `json:"from,omitempty"`
-	To   []definitions.CallerInfo `json:"to,omitempty"`
 	Text string                   `json:"text,omitempty"`
+	To   []definitions.CallerInfo `json:"to,omitempty"`
 }

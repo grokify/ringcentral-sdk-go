@@ -1,11 +1,11 @@
 package definitions
 
 type AccountServiceInfo struct {
-	Brand           BrandInfo            `json:"brand,omitempty"`
-	ServicePlan     ServicePlanInfo      `json:"servicePlan,omitempty"`
 	BillingPlan     BillingPlanInfo      `json:"billingPlan,omitempty"`
-	ServiceFeatures []ServiceFeatureInfo `json:"serviceFeatures,omitempty"`
+	Brand           BrandInfo            `json:"brand,omitempty"`
 	Limits          AccountLimits        `json:"limits,omitempty"`
-	Uri             string               `json:"uri,omitempty"`
+	ServiceFeatures []ServiceFeatureInfo `json:"serviceFeatures,omitempty"`
+	ServicePlan     ServicePlanInfo      `json:"servicePlan,omitempty"`
 	ServicePlanName string               `json:"servicePlanName,omitempty"`
+	Uri             string               `json:"uri,omitempty"`
 }

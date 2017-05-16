@@ -6,7 +6,7 @@ import (
 
 type AccountExtensionAnsweringrulePutRequestBody struct {
 	Enabled    bool                       `json:"enabled,omitempty"`
-	Name       string                     `json:"name,omitempty"`
 	Forwarding definitions.ForwardingInfo `json:"forwarding,omitempty"`
 	Greetings  []definitions.GreetingInfo `json:"greetings,omitempty"`
+	Name       string                     `json:"name,omitempty"`
 }

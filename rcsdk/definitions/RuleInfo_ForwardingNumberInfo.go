@@ -1,8 +1,8 @@
 package definitions
 
 type RuleInfo_ForwardingNumberInfo struct {
-	PhoneNumber string `json:"phoneNumber,omitempty"`
-	Label       string `json:"label,omitempty"`
-	Uri         string `json:"uri,omitempty"`
 	Id          string `json:"id,omitempty"`
+	Label       string `json:"label,omitempty"`
+	PhoneNumber string `json:"phoneNumber,omitempty"`
+	Uri         string `json:"uri,omitempty"`
 }

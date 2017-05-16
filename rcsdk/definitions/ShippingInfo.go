@@ -1,9 +1,9 @@
 package definitions
 
 type ShippingInfo struct {
-	Carrier        string            `json:"carrier,omitempty"`
-	TrackingNumber string            `json:"trackingNumber,omitempty"`
-	Method         []ShippingMethod  `json:"method,omitempty"`
 	Address        []ShippingAddress `json:"address,omitempty"`
+	Carrier        string            `json:"carrier,omitempty"`
+	Method         []ShippingMethod  `json:"method,omitempty"`
 	Status         string            `json:"status,omitempty"`
+	TrackingNumber string            `json:"trackingNumber,omitempty"`
 }

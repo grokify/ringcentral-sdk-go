@@ -5,7 +5,7 @@ import (
 )
 
 type AccountBusinessaddressPutRequestBody struct {
+	BusinessAddress definitions.BusinessAddressInfo `json:"businessAddress,omitempty"`
 	Company         string                          `json:"company,omitempty"`
 	Email           string                          `json:"email,omitempty"`
-	BusinessAddress definitions.BusinessAddressInfo `json:"businessAddress,omitempty"`
 }

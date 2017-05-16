@@ -1,21 +1,21 @@
 package definitions
 
 type IncomingCallNotification struct {
-	Event          string `json:"event,omitempty"`
-	Uuid           string `json:"uuid,omitempty"`
-	ExtensionId    string `json:"extensionId,omitempty"`
-	ServerId       string `json:"serverId,omitempty"`
-	From           string `json:"from,omitempty"`
 	Action         string `json:"action,omitempty"`
+	Event          string `json:"event,omitempty"`
+	ExtensionId    string `json:"extensionId,omitempty"`
+	From           string `json:"from,omitempty"`
 	FromName       string `json:"fromName,omitempty"`
-	SrvLvlExt      string `json:"srvLvlExt,omitempty"`
 	RecUrl         string `json:"recUrl,omitempty"`
-	ToName         string `json:"toName,omitempty"`
+	ServerId       string `json:"serverId,omitempty"`
+	SessionId      string `json:"sessionId,omitempty"`
 	Sid            string `json:"sid,omitempty"`
+	SrvLvl         string `json:"srvLvl,omitempty"`
+	SrvLvlExt      string `json:"srvLvlExt,omitempty"`
 	SubscriptionId string `json:"subscriptionId,omitempty"`
 	Timestamp      string `json:"timestamp,omitempty"`
-	SessionId      string `json:"sessionId,omitempty"`
 	To             string `json:"to,omitempty"`
+	ToName         string `json:"toName,omitempty"`
 	ToUrl          string `json:"toUrl,omitempty"`
-	SrvLvl         string `json:"srvLvl,omitempty"`
+	Uuid           string `json:"uuid,omitempty"`
 }

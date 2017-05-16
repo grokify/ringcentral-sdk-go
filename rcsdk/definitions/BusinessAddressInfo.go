@@ -1,9 +1,9 @@
 package definitions
 
 type BusinessAddressInfo struct {
-	Street  string `json:"street,omitempty"`
-	Zip     string `json:"zip,omitempty"`
+	City    string `json:"city,omitempty"`
 	Country string `json:"country,omitempty"`
 	State   string `json:"state,omitempty"`
-	City    string `json:"city,omitempty"`
+	Street  string `json:"street,omitempty"`
+	Zip     string `json:"zip,omitempty"`
 }

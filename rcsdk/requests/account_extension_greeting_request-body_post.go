@@ -5,6 +5,6 @@ import (
 )
 
 type AccountExtensionGreetingPostRequestBody struct {
-	Type          string                                           `json:"type,omitempty"`
 	AnsweringRule definitions.CustomGreetingInfo_AnsweringRuleInfo `json:"answeringRule,omitempty"`
+	Type          string                                           `json:"type,omitempty"`
 }

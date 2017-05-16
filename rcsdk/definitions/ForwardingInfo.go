@@ -1,9 +1,9 @@
 package definitions
 
 type ForwardingInfo struct {
-	NotifyMySoftPhones    bool       `json:"notifyMySoftPhones,omitempty"`
 	NotifyAdminSoftPhones bool       `json:"notifyAdminSoftPhones,omitempty"`
-	SoftPhonesRingCount   int        `json:"softPhonesRingCount,omitempty"`
+	NotifyMySoftPhones    bool       `json:"notifyMySoftPhones,omitempty"`
 	RingingMode           string     `json:"ringingMode,omitempty"`
 	Rules                 []RuleInfo `json:"rules,omitempty"`
+	SoftPhonesRingCount   int        `json:"softPhonesRingCount,omitempty"`
 }

@@ -1,9 +1,9 @@
 package definitions
 
 type MessageNotification struct {
-	Uuid           string       `json:"uuid,omitempty"`
+	Body           MessageEvent `json:"body,omitempty"`
 	Event          string       `json:"event,omitempty"`
 	SubscriptionId string       `json:"subscriptionId,omitempty"`
 	Timestamp      string       `json:"timestamp,omitempty"`
-	Body           MessageEvent `json:"body,omitempty"`
+	Uuid           string       `json:"uuid,omitempty"`
 }

@@ -5,6 +5,6 @@ import (
 )
 
 type AccountExtensionConferencingPutRequestBody struct {
-	PhoneNumbers        []definitions.Conferencing_Request_PhoneNumber `json:"phoneNumbers,omitempty"`
 	AllowJoinBeforeHost bool                                           `json:"allowJoinBeforeHost,omitempty"`
+	PhoneNumbers        []definitions.Conferencing_Request_PhoneNumber `json:"phoneNumbers,omitempty"`
 }

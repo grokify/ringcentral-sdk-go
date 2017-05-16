@@ -1,14 +1,14 @@
 package definitions
 
 type PresenceEvent struct {
-	PickUpCallsOnHold   bool   `json:"pickUpCallsOnHold,omitempty"`
+	AllowSeeMyPresence  bool   `json:"allowSeeMyPresence,omitempty"`
+	DndStatus           string `json:"dndStatus,omitempty"`
 	ExtensionId         string `json:"extensionId,omitempty"`
+	PickUpCallsOnHold   bool   `json:"pickUpCallsOnHold,omitempty"`
+	PresenceStatus      string `json:"presenceStatus,omitempty"`
+	RingOnMonitoredCall bool   `json:"ringOnMonitoredCall,omitempty"`
+	Sequence            int    `json:"sequence,omitempty"`
 	TelephonyStatus     string `json:"telephonyStatus,omitempty"`
 	TerminationType     string `json:"terminationType,omitempty"`
-	Sequence            int    `json:"sequence,omitempty"`
 	UserStatus          string `json:"userStatus,omitempty"`
-	AllowSeeMyPresence  bool   `json:"allowSeeMyPresence,omitempty"`
-	PresenceStatus      string `json:"presenceStatus,omitempty"`
-	DndStatus           string `json:"dndStatus,omitempty"`
-	RingOnMonitoredCall bool   `json:"ringOnMonitoredCall,omitempty"`
 }

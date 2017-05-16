@@ -5,10 +5,10 @@ import (
 )
 
 type AccountExtensionFaxPostRequestBody struct {
-	To                []definitions.CallerInfo `json:"to,omitempty"`
-	FaxResolution     string                   `json:"faxResolution,omitempty"`
-	SendTime          string                   `json:"sendTime,omitempty"`
 	CoverIndex        int                      `json:"coverIndex,omitempty"`
 	CoverPageText     string                   `json:"coverPageText,omitempty"`
+	FaxResolution     string                   `json:"faxResolution,omitempty"`
 	OriginalMessageId string                   `json:"originalMessageId,omitempty"`
+	SendTime          string                   `json:"sendTime,omitempty"`
+	To                []definitions.CallerInfo `json:"to,omitempty"`
 }

@@ -1,7 +1,7 @@
 package definitions
 
 type MessageChange struct {
-	Type         string `json:"type,omitempty"`
 	NewCount     int    `json:"newCount,omitempty"`
+	Type         string `json:"type,omitempty"`
 	UpdatedCount int    `json:"updatedCount,omitempty"`
 }
