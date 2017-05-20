@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strings"
 )
 
 type RequestInterface interface {
@@ -20,14 +21,21 @@ type Request2 struct {
 	Headers http.Header
 }
 
+func NewRequest2() Request2 {
+	return Request2{
+		Method:  "GET",
+		Query:   url.Values{},
+		Body:    bytes.NewReader([]byte("")),
+		Headers: http.Header{}}
+}
+
 func (req *Request2) Send() (*http.Response, error) {
-	// REQUEST
-	corereq, _ := http.NewRequest(req.Method, req.URL, req.Body)
+	corereq, _ := http.NewRequest(
+		strings.ToUpper(req.Method), req.URL, req.Body)
 
 	corereq.Header = req.Headers
 	corereq.Header.Add("Accept", JSON_CONTENT_TYPE)
 
-	// RESPONSE
 	client := &http.Client{}
 	return client.Do(corereq)
 }
