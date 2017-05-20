@@ -84,7 +84,7 @@ func (p *Platform) GetApiKey() string {
 	return apiKey
 }
 
-func (p *Platform) getAuthHeader() string {
+func (p *Platform) GetAuthHeader() string {
 	return strings.Join([]string{p.Auth.GetTokenType(), p.Auth.GetAccessToken()}, " ")
 }
 
@@ -92,9 +92,8 @@ func (p *Platform) apiCall(req rchttp.Request) (*http.Response, error) {
 	p.IsAuthorized()
 
 	head := req.Headers()
-	head.Add("Authorization", p.getAuthHeader())
+	head.Add("Authorization", p.GetAuthHeader())
 
-	fmt.Printf("SDK_API_CALL_URL [%v]\n", p.ApiUrl(req.Url()))
 	log.WithFields(log.Fields{
 		"info": "SDK Request URL",
 	}).Info(p.ApiUrl(req.Url()))
@@ -106,16 +105,19 @@ func (p *Platform) apiCall(req rchttp.Request) (*http.Response, error) {
 func (p *Platform) APICall(req rchttp.Request2) (*http.Response, error) {
 	p.IsAuthorized()
 
-	req.Headers.Add("Authorization", p.getAuthHeader())
+	req.Headers.Add("Authorization", p.GetAuthHeader())
 
-	fmt.Printf("SDK_API_CALL_URL [%v]\n", p.ApiUrl(req.URL))
 	log.WithFields(log.Fields{
 		"info": "SDK Request URL",
 	}).Info(p.ApiUrl(req.URL))
 
-	//req.SetUrl(p.ApiUrl(req.Url()))
+	absURL := p.ApiUrl(req.URL)
+	queryString := req.Query.Encode()
+	if len(queryString) > 0 {
+		absURL = fmt.Sprintf("%s?%s", absURL, queryString)
+	}
+	req.URL = absURL
 
-	req.URL = p.ApiUrl(req.URL)
 	return req.Send()
 }
 
