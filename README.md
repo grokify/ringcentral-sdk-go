@@ -30,6 +30,11 @@ The core SDK objects follow the general design of the official RingCentral SDKs.
 
 This SDK is an early stage library and subject to breaking changes.
 
+Examples using `*http.Client` and the `oauth2` package can be found here:
+
+* Password Grant: [oauth2util-go](https://github.com/grokify/oauth2util-go/), [ringcentral_get_account.go](https://github.com/grokify/oauth2util-go/blob/master/examples/ringcentral_get_account/ringcentral_get_account.go)
+* Auth Code: [beego-oauth2-demo](https://github.com/grokify/)
+
 ### Included
 
 * OAuth2 authorization
