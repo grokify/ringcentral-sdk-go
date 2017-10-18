@@ -52,7 +52,7 @@ This SDK is an experimental SDK and will likely see a major rewrite to be more i
 
 * OAuth2 Helpers: [grokify/oauth2util-go/services/ringcentral](https://github.com/grokify/oauth2util-go/tree/master/services/ringcentral)
   * example: [ringcentral_get_account.go](https://github.com/grokify/oauth2util-go/blob/master/examples/ringcentral_get_account/ringcentral_get_account.go)
-* Auth Code example: [beego-oauth2-demo](https://github.com/grokify/)
+* Auth Code example: [grokify/beego-oauth2-demo](https://github.com/grokify/beego-oauth2-demo)
 * Swagger Codegen SDK: [grokify/ringcentral-sdk-go-scg](https://github.com/grokify/ringcentral-sdk-go-scg)
 
 
