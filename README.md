@@ -1,6 +1,8 @@
 RingCentral SDK in Go
 =====================
 
+:warning: This package is not supported. Please use [`grokify/go-ringcentral`](https://github.com/grokify/go-ringcentral) instead :warning:
+
 [![Docs][docs-godoc-svg]][docs-godoc-link]
 [![License][license-svg]][license-link]
 
