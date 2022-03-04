@@ -13,7 +13,6 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/grokify/gotilla/net/httputil"
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/core"
 	rchttp "github.com/grokify/ringcentral-sdk-go/rcsdk/http"
 )
@@ -65,7 +64,7 @@ func (p *Platform) Authorize(username string, extension string, password string,
 		return res, err
 	}
 
-	data, err := httputil.ResponseBody(res)
+	data, err := io.ReadAll(res.Body)
 	if err != nil {
 		return res, err
 	}

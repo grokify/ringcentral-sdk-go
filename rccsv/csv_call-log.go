@@ -26,8 +26,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/grokify/gotilla/encoding/csvutil"
-	"github.com/grokify/gotilla/time/timeutil"
+	"github.com/grokify/mogo/encoding/csvutil"
+	"github.com/grokify/mogo/time/timeutil"
 	"github.com/ttacon/libphonenumber"
 )
 
@@ -204,11 +204,7 @@ func NewCallLogRecordsCsvReader() CallLogRecordsCsvReader {
 }
 
 func (rd *CallLogRecordsCsvReader) ReadFile(path string) error {
-	return rd.ReadFileBom(path, false)
-}
-
-func (rd *CallLogRecordsCsvReader) ReadFileBom(path string, stripBom bool) error {
-	reader, file, err := csvutil.NewReader(path, ',', stripBom)
+	reader, file, err := csvutil.NewReaderFile(path, ',')
 	if err != nil {
 		return err
 	}
@@ -220,9 +216,6 @@ func (rd *CallLogRecordsCsvReader) ReadFileBom(path string, stripBom bool) error
 			break
 		} else if err != nil {
 			file.Close()
-			if stripBom == false && err.Error() == "line 1, column 1: bare \" in non-quoted-field" {
-				return rd.ReadFileBom(path, true)
-			}
 			return err
 		}
 		if i == 0 {

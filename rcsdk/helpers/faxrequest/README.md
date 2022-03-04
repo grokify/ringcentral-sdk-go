@@ -147,7 +147,7 @@ Faxes are queued by RingCentral and a successful response will include the prope
 
 The following code can be used to download and save a fax.
 
-Note: this example uses `net/httputil` from `gotilla`.
+Note: this example uses `net/httputil` from `mogo`.
 
 ```go
 // import rcsdk, instantiate SDK, retrieve platform object and authorize user here
@@ -157,7 +157,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/grokify/gotilla/net/httputil"
+	"github.com/grokify/mogo/net/httputil"
 )
 
 fileUrl := "/account/111111111/extension/222222222/message-store/333333333/content/4444444444"
