@@ -12,6 +12,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/grokify/mogo/net/httputilmore"
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/core"
 	rchttp "github.com/grokify/ringcentral-sdk-go/rcsdk/http"
 )
@@ -90,7 +91,7 @@ func (p *Platform) apiCall(req rchttp.Request) (*http.Response, error) {
 	p.IsAuthorized()
 
 	head := req.Headers()
-	head.Add("Authorization", p.GetAuthHeader())
+	head.Add(httputilmore.HeaderAuthorization, p.GetAuthHeader())
 
 	log.Printf("[INFO] SDK_Request_URL [%s]", req.Url())
 
@@ -101,7 +102,7 @@ func (p *Platform) apiCall(req rchttp.Request) (*http.Response, error) {
 func (p *Platform) APICall(req rchttp.Request2) (*http.Response, error) {
 	p.IsAuthorized()
 
-	req.Headers.Add("Authorization", p.GetAuthHeader())
+	req.Headers.Add(httputilmore.HeaderAuthorization, p.GetAuthHeader())
 
 	log.Printf("[INFO] SDK_Request_URL [%s]", req.URL)
 
@@ -132,8 +133,8 @@ func (p *Platform) authCall(username string, extension string, password string) 
 	req, _ := http.NewRequest("POST", tokenUrl, body)
 
 	authzHeaderVal := strings.Join([]string{"Basic", p.GetApiKey()}, " ")
-	req.Header.Add("Authorization", authzHeaderVal)
-	req.Header.Add("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8")
+	req.Header.Add(httputilmore.HeaderAuthorization, authzHeaderVal)
+	req.Header.Add(httputilmore.HeaderContentType, httputilmore.ContentTypeAppFormUrlEncodedUtf8)
 
 	// RESPONSE
 	client := &http.Client{}
@@ -147,22 +148,22 @@ func (p *Platform) Send(req rchttp.Request) (*http.Response, error) {
 }
 
 func (p *Platform) Get(url string, queryParameters url.Values, body io.Reader, headers http.Header) (*http.Response, error) {
-	rcreq := p.context.GetRequest("GET", url, queryParameters, body, headers)
+	rcreq := p.context.GetRequest(http.MethodGet, url, queryParameters, body, headers)
 	return p.apiCall(rcreq)
 }
 
 func (p *Platform) Post(url string, queryParameters url.Values, body io.Reader, headers http.Header) (*http.Response, error) {
-	rcreq := p.context.GetRequest("POST", url, queryParameters, body, headers)
+	rcreq := p.context.GetRequest(http.MethodPost, url, queryParameters, body, headers)
 	return p.apiCall(rcreq)
 }
 
 func (p *Platform) Put(url string, queryParameters url.Values, body io.Reader, headers http.Header) (*http.Response, error) {
-	rcreq := p.context.GetRequest("PUT", url, queryParameters, body, headers)
+	rcreq := p.context.GetRequest(http.MethodPut, url, queryParameters, body, headers)
 	return p.apiCall(rcreq)
 }
 
 func (p *Platform) Delete(url string, queryParameters url.Values, body io.Reader, headers http.Header) (*http.Response, error) {
-	rcreq := p.context.GetRequest("DELETE", url, queryParameters, body, headers)
+	rcreq := p.context.GetRequest(http.MethodDelete, url, queryParameters, body, headers)
 	return p.apiCall(rcreq)
 }
 

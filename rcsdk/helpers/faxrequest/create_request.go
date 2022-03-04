@@ -12,11 +12,8 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/grokify/mogo/net/httputilmore"
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/models"
-)
-
-const (
-	JSON_CONTENT_TYPE = "application/json"
 )
 
 type Metadata struct {
@@ -68,7 +65,7 @@ func (fax *FaxRequest) SetMetadata(metadata Metadata) error {
 
 	// MIME HEADER
 	headers := textproto.MIMEHeader{}
-	headers.Add("Content-Type", "application/json")
+	headers.Add(httputilmore.HeaderContentType, httputilmore.ContentTypeAppJson)
 
 	// MIME PART
 	part, err := fax.writer.CreatePart(headers)
@@ -93,13 +90,13 @@ func (fax *FaxRequest) AddFile(path string) error {
 
 	// FILE HEAD
 	headers := textproto.MIMEHeader{}
-	headers.Add("Content-Type", "application/octet-stream")
+	headers.Add(httputilmore.HeaderContentType, httputilmore.ContentTypeAppOctetStream)
 
 	_, filename := filepath.Split(path)
 	if len(filename) > 0 {
-		headers.Add("Content-Disposition", strings.Join([]string{`attachment; filename="`, filename, `"`}, ""))
+		headers.Add(httputilmore.HeaderContentDisposition, strings.Join([]string{`attachment; filename="`, filename, `"`}, ""))
 	} else {
-		headers.Add("Content-Disposition", "attachment")
+		headers.Add(httputilmore.HeaderContentDisposition, "attachment")
 	}
 
 	// FILE PART
@@ -111,15 +108,15 @@ func (fax *FaxRequest) AddFile(path string) error {
 	return err
 }
 
-func (fax *FaxRequest) AddText(bytes []byte, content_type string) error {
+func (fax *FaxRequest) AddText(bytes []byte, contentType string) error {
 
-	if len(content_type) == 0 {
-		content_type = "text/plain"
+	if len(contentType) == 0 {
+		contentType = httputilmore.ContentTypeTextPlain
 	}
 
 	// FILE HEAD
 	headers := textproto.MIMEHeader{}
-	headers.Add("Content-Type", content_type)
+	headers.Add(httputilmore.HeaderContentType, contentType)
 
 	// FILE PART
 	part, err := fax.writer.CreatePart(headers)
@@ -132,11 +129,11 @@ func (fax *FaxRequest) AddText(bytes []byte, content_type string) error {
 
 func (fax *FaxRequest) setHeaders() {
 	fax.headers = http.Header{}
-	fax.headers.Add("Content-Type", strings.Join([]string{"multipart/mixed; boundary=", fax.writer.Boundary()}, ""))
+	fax.headers.Add(httputilmore.HeaderContentType, strings.Join([]string{"multipart/mixed; boundary=", fax.writer.Boundary()}, ""))
 }
 
 func (fax *FaxRequest) Method() string {
-	return "POST"
+	return http.MethodPost
 }
 
 func (fax *FaxRequest) Path() string {
@@ -168,7 +165,7 @@ func (req *FaxRequest) Send() (*http.Response, error) {
 	r, _ := http.NewRequest(req.Method(), req.Url(), req.Body())
 
 	r.Header = req.Headers()
-	r.Header.Add("Accept", JSON_CONTENT_TYPE)
+	r.Header.Add(httputilmore.HeaderAccept, httputilmore.ContentTypeAppJson)
 
 	// RESPONSE
 	client := &http.Client{}

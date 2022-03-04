@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+
+	"github.com/grokify/mogo/net/httputilmore"
 )
 
 type RequestInterface interface {
@@ -23,7 +25,7 @@ type Request2 struct {
 
 func NewRequest2() Request2 {
 	return Request2{
-		Method:  "GET",
+		Method:  http.MethodGet,
 		Query:   url.Values{},
 		Body:    bytes.NewReader([]byte("")),
 		Headers: http.Header{}}
@@ -34,7 +36,7 @@ func (req *Request2) Send() (*http.Response, error) {
 		strings.ToUpper(req.Method), req.URL, req.Body)
 
 	corereq.Header = req.Headers
-	corereq.Header.Add("Accept", JSON_CONTENT_TYPE)
+	corereq.Header.Add(httputilmore.HeaderAccept, JSON_CONTENT_TYPE)
 
 	client := &http.Client{}
 	return client.Do(corereq)
