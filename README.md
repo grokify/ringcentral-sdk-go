@@ -1,7 +1,27 @@
-RingCentral SDK in Go
-=====================
+# RingCentral SDK in Go
 
-:warning: This package is not supported. Please use [`grokify/go-ringcentral`](https://github.com/grokify/go-ringcentral) instead :warning:
+[![Build Status][build-status-svg]][build-status-url]
+[![Go Report Card][goreport-svg]][goreport-url]
+[![Docs][docs-godoc-svg]][docs-godoc-url]
+[![SLOC][loc-svg]][repo-url]
+[![License][license-svg]][license-url]
+
+ [used-by-svg]: https://sourcegraph.com/github.com/grokify/ringcentral-sdk-go/-/badge.svg
+ [used-by-url]: https://sourcegraph.com/github.com/grokify/ringcentral-sdk-go?badge
+ [build-status-svg]: https://github.com/grokify/ringcentral-sdk-go/workflows/go%20build/badge.svg?branch=master
+ [build-status-url]: https://github.com/grokify/ringcentral-sdk-go/actions
+ [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/ringcentral-sdk-go
+ [goreport-url]: https://goreportcard.com/report/github.com/grokify/ringcentral-sdk-go
+ [codeclimate-status-svg]: https://codeclimate.com/github/grokify/ringcentral-sdk-go/badges/gpa.svg
+ [codeclimate-status-url]: https://codeclimate.com/github/grokify/ringcentral-sdk-go
+ [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/ringcentral-sdk-go
+ [docs-godoc-url]: https://pkg.go.dev/github.com/grokify/ringcentral-sdk-go
+ [license-svg]: https://img.shields.io/badge/license-MIT-rcsdkgo.svg
+ [license-url]: https://github.com/grokify/ringcentral-sdk-go/blob/master/LICENSE
+ [loc-svg]: https://tokei.rs/b1/github/grokify/ringcentral-sdk-go
+ [repo-url]: https://github.com/grokify/ringcentral-sdk-go
+
+:warning: Please use [`grokify/go-ringcentral`](https://github.com/grokify/go-ringcentral) instead :warning:
 
 [![Docs][docs-godoc-svg]][docs-godoc-link]
 [![License][license-svg]][license-link]
