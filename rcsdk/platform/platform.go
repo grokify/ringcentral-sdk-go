@@ -6,12 +6,11 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"net/url"
 	"strconv"
 	"strings"
-
-	log "github.com/sirupsen/logrus"
 
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/core"
 	rchttp "github.com/grokify/ringcentral-sdk-go/rcsdk/http"
@@ -93,9 +92,7 @@ func (p *Platform) apiCall(req rchttp.Request) (*http.Response, error) {
 	head := req.Headers()
 	head.Add("Authorization", p.GetAuthHeader())
 
-	log.WithFields(log.Fields{
-		"info": "SDK Request URL",
-	}).Info(p.ApiUrl(req.Url()))
+	log.Printf("[INFO] SDK_Request_URL [%s]", req.Url())
 
 	req.SetUrl(p.ApiUrl(req.Url()))
 	return req.Send()
@@ -106,9 +103,7 @@ func (p *Platform) APICall(req rchttp.Request2) (*http.Response, error) {
 
 	req.Headers.Add("Authorization", p.GetAuthHeader())
 
-	log.WithFields(log.Fields{
-		"info": "SDK Request URL",
-	}).Info(p.ApiUrl(req.URL))
+	log.Printf("[INFO] SDK_Request_URL [%s]", req.URL)
 
 	absURL := p.ApiUrl(req.URL)
 	queryString := req.Query.Encode()
