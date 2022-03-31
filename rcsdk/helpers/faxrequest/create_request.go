@@ -81,7 +81,6 @@ func (fax *FaxRequest) SetMetadata(metadata Metadata) error {
 }
 
 func (fax *FaxRequest) AddFile(path string) error {
-
 	// READ FILE
 	bytes, err := ioutil.ReadFile(path)
 	if err != nil {
@@ -140,11 +139,11 @@ func (fax *FaxRequest) Path() string {
 	return ""
 }
 
-func (fax *FaxRequest) Url() string {
+func (fax *FaxRequest) URL() string {
 	return fax.url
 }
 
-func (fax *FaxRequest) SetUrl(url string) {
+func (fax *FaxRequest) SetURL(url string) {
 	fax.url = url
 }
 
@@ -162,7 +161,7 @@ func (fax *FaxRequest) Body() io.Reader {
 
 func (req *FaxRequest) Send() (*http.Response, error) {
 	// REQUEST
-	r, _ := http.NewRequest(req.Method(), req.Url(), req.Body())
+	r, _ := http.NewRequest(req.Method(), req.URL(), req.Body())
 
 	r.Header = req.Headers()
 	r.Header.Add(httputilmore.HeaderAccept, httputilmore.ContentTypeAppJSON)

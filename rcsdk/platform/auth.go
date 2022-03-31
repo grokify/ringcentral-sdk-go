@@ -14,7 +14,7 @@ type Auth struct {
 	refresnTokenExpireTime int
 
 	scope   string
-	ownerId string
+	ownerID string
 }
 
 func NewAuth() Auth {
@@ -24,7 +24,6 @@ func NewAuth() Auth {
 }
 
 func (a *Auth) SetData(authData AuthCallResponseData) *Auth {
-
 	// MISC
 	a.tokenType = authData.TokenType
 
@@ -52,7 +51,7 @@ func (a *Auth) Reset() *Auth {
 	a.refresnTokenExpireTime = 0
 
 	a.scope = ""
-	a.ownerId = ""
+	a.ownerID = ""
 	return a
 }
 

@@ -142,9 +142,9 @@ func (p *Platform) authCall(username string, extension string, password string) 
 }
 
 func (p *Platform) Send(req rchttp.Request) (*http.Response, error) {
-	rcreq := p.context.GetRequest(strings.ToUpper(req.Method()), req.Url(), req.Query(), req.Body(), req.Headers())
 	return p.apiCall(req)
-	return p.apiCall(rcreq)
+	// rcreq := p.context.GetRequest(strings.ToUpper(req.Method()), req.Url(), req.Query(), req.Body(), req.Headers())
+	// return p.apiCall(rcreq)
 }
 
 func (p *Platform) Get(url string, queryParameters url.Values, body io.Reader, headers http.Header) (*http.Response, error) {
