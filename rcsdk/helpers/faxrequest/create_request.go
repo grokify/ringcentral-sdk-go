@@ -65,7 +65,7 @@ func (fax *FaxRequest) SetMetadata(metadata Metadata) error {
 
 	// MIME HEADER
 	headers := textproto.MIMEHeader{}
-	headers.Add(httputilmore.HeaderContentType, httputilmore.ContentTypeAppJson)
+	headers.Add(httputilmore.HeaderContentType, httputilmore.ContentTypeAppJSON)
 
 	// MIME PART
 	part, err := fax.writer.CreatePart(headers)
@@ -165,7 +165,7 @@ func (req *FaxRequest) Send() (*http.Response, error) {
 	r, _ := http.NewRequest(req.Method(), req.Url(), req.Body())
 
 	r.Header = req.Headers()
-	r.Header.Add(httputilmore.HeaderAccept, httputilmore.ContentTypeAppJson)
+	r.Header.Add(httputilmore.HeaderAccept, httputilmore.ContentTypeAppJSON)
 
 	// RESPONSE
 	client := &http.Client{}

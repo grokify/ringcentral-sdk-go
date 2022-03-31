@@ -134,7 +134,7 @@ func (p *Platform) authCall(username string, extension string, password string) 
 
 	authzHeaderVal := strings.Join([]string{"Basic", p.GetApiKey()}, " ")
 	req.Header.Add(httputilmore.HeaderAuthorization, authzHeaderVal)
-	req.Header.Add(httputilmore.HeaderContentType, httputilmore.ContentTypeAppFormUrlEncodedUtf8)
+	req.Header.Add(httputilmore.HeaderContentType, httputilmore.ContentTypeAppFormURLEncodedUtf8)
 
 	// RESPONSE
 	client := &http.Client{}
