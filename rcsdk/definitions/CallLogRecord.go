@@ -5,7 +5,7 @@ type CallLogRecord struct {
 	Direction        string        `json:"direction,omitempty"`
 	Duration         int           `json:"duration,omitempty"`
 	From             CallerInfo    `json:"from,omitempty"`
-	Id               string        `json:"id,omitempty"`
+	ID               string        `json:"id,omitempty"`
 	LastModifiedTime string        `json:"lastModifiedTime,omitempty"`
 	Legs             []LegInfo     `json:"legs,omitempty"`
 	Recording        RecordingInfo `json:"recording,omitempty"`
@@ -15,5 +15,5 @@ type CallLogRecord struct {
 	To               CallerInfo    `json:"to,omitempty"`
 	Transport        string        `json:"transport,omitempty"`
 	Type             string        `json:"type,omitempty"`
-	Uri              string        `json:"uri,omitempty"`
+	URI              string        `json:"uri,omitempty"`
 }

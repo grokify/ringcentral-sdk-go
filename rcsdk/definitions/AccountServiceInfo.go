@@ -7,5 +7,5 @@ type AccountServiceInfo struct {
 	ServiceFeatures []ServiceFeatureInfo `json:"serviceFeatures,omitempty"`
 	ServicePlan     ServicePlanInfo      `json:"servicePlan,omitempty"`
 	ServicePlanName string               `json:"servicePlanName,omitempty"`
-	Uri             string               `json:"uri,omitempty"`
+	URI             string               `json:"uri,omitempty"`
 }

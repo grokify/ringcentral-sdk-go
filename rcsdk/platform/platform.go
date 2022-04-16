@@ -23,7 +23,7 @@ const (
 	REFRESH_TOKEN_TTL_REMEMBER int    = 604800 // 1 week
 	ACCOUNT_PREFIX             string = "/account/"
 	ACCOUNT_ID                 string = "~"
-	TOKEN_ENDPOINT             string = "/restapi/oauth/token"
+	TOKEN_ENDPOINT             string = "/restapi/oauth/token" // #nosec G101
 	REVOKE_ENDPOINT            string = "/restapi/oauth/revoke"
 	API_VERSION                string = "v1.0"
 	URL_PREFIX                 string = "/restapi"
