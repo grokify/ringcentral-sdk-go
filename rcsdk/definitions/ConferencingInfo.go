@@ -7,6 +7,6 @@ type ConferencingInfo struct {
 	ParticipantCode     string                             `json:"participantCode,omitempty"`
 	PhoneNumber         string                             `json:"phoneNumber,omitempty"`
 	PhoneNumbers        []ConferencingInfo_PhoneNumberInfo `json:"phoneNumbers,omitempty"`
-	TapToJoinUri        string                             `json:"tapToJoinUri,omitempty"`
-	Uri                 string                             `json:"uri,omitempty"`
+	TapToJoinURI        string                             `json:"tapToJoinUri,omitempty"`
+	URI                 string                             `json:"uri,omitempty"`
 }

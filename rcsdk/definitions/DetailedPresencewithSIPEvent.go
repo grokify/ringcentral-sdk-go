@@ -4,7 +4,7 @@ type DetailedPresencewithSIPEvent struct {
 	ActiveCalls         []DetailedPresencewithSIPEvent_ActiveCallInfo `json:"activeCalls,omitempty"`
 	AllowSeeMyPresence  bool                                          `json:"allowSeeMyPresence,omitempty"`
 	DndStatus           string                                        `json:"dndStatus,omitempty"`
-	ExtensionId         string                                        `json:"extensionId,omitempty"`
+	ExtensionID         string                                        `json:"extensionId,omitempty"`
 	PickUpCallsOnHold   bool                                          `json:"pickUpCallsOnHold,omitempty"`
 	PresenceStatus      string                                        `json:"presenceStatus,omitempty"`
 	RingOnMonitoredCall bool                                          `json:"ringOnMonitoredCall,omitempty"`

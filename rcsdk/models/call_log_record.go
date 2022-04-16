@@ -1,16 +1,16 @@
 package models
 
 type CallLogRecordsSimpleResponse struct {
-	Uri        string                `json:"uri"`
+	URI        string                `json:"uri"`
 	Records    []CallLogRecordSimple `json:"records"`
 	Paging     Paging                `json:"paging"`
 	Navigation Navigation            `json:"navigation"`
 }
 
 type CallLogRecordSimple struct {
-	Uri       string        `json:"uri"`
-	Id        string        `json:"id"`
-	SessionId string        `json:"sessionId"`
+	URI       string        `json:"uri"`
+	ID        string        `json:"id"`
+	SessionID string        `json:"sessionId"`
 	StartTime string        `json:"startTime"`
 	Duration  int           `json:"duration"`
 	Type      string        `json:"type"`

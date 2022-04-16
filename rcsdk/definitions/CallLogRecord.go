@@ -10,7 +10,7 @@ type CallLogRecord struct {
 	Legs             []LegInfo     `json:"legs,omitempty"`
 	Recording        RecordingInfo `json:"recording,omitempty"`
 	Result           string        `json:"result,omitempty"`
-	SessionId        string        `json:"sessionId,omitempty"`
+	SessionID        string        `json:"sessionId,omitempty"`
 	StartTime        string        `json:"startTime,omitempty"`
 	To               CallerInfo    `json:"to,omitempty"`
 	Transport        string        `json:"transport,omitempty"`

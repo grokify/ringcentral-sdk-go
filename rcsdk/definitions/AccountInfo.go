@@ -9,5 +9,5 @@ type AccountInfo struct {
 	SetupWizardState string              `json:"setupWizardState,omitempty"`
 	Status           string              `json:"status,omitempty"`
 	StatusInfo       StatusInfo          `json:"statusInfo,omitempty"`
-	Uri              string              `json:"uri,omitempty"`
+	URI              string              `json:"uri,omitempty"`
 }

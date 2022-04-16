@@ -8,12 +8,12 @@ type Paging struct {
 }
 
 type Navigation struct {
-	FirstPage    Uri `json:"firstPage,omitempty"`
-	NextPage     Uri `json:"nextPage,omitempty"`
-	PreviousPage Uri `json:"previousPage,omitempty"`
-	LastPage     Uri `json:"lastPage,omitempty"`
+	FirstPage    URI `json:"firstPage,omitempty"`
+	NextPage     URI `json:"nextPage,omitempty"`
+	PreviousPage URI `json:"previousPage,omitempty"`
+	LastPage     URI `json:"lastPage,omitempty"`
 }
 
-type Uri struct {
-	Uri string `json:"uri"`
+type URI struct {
+	URI string `json:"uri"`
 }

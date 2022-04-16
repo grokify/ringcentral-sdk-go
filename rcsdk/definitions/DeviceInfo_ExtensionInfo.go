@@ -2,7 +2,7 @@ package definitions
 
 type DeviceInfo_ExtensionInfo struct {
 	ExtensionNumber string `json:"extensionNumber,omitempty"`
-	Id              string `json:"id,omitempty"`
-	PartnerId       string `json:"partnerId,omitempty"`
-	Uri             string `json:"uri,omitempty"`
+	ID              string `json:"id,omitempty"`
+	PartnerID       string `json:"partnerId,omitempty"`
+	URI             string `json:"uri,omitempty"`
 }

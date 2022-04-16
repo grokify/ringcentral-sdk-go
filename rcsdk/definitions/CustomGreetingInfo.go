@@ -2,8 +2,8 @@ package definitions
 
 type CustomGreetingInfo struct {
 	ContentType string `json:"contentType,omitempty"`
-	ContentUri  string `json:"contentUri,omitempty"`
-	Id          string `json:"id,omitempty"`
+	ContentURI  string `json:"contentUri,omitempty"`
+	ID          string `json:"id,omitempty"`
 	Type        string `json:"type,omitempty"`
-	Uri         string `json:"uri,omitempty"`
+	URI         string `json:"uri,omitempty"`
 }

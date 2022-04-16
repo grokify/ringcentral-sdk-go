@@ -1,7 +1,7 @@
 package definitions
 
 type CountryInfo struct {
-	Id   string `json:"id,omitempty"`
+	ID   string `json:"id,omitempty"`
 	Name string `json:"name,omitempty"`
-	Uri  string `json:"uri,omitempty"`
+	URI  string `json:"uri,omitempty"`
 }
