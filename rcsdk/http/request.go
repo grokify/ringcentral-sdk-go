@@ -36,7 +36,7 @@ func (req *Request2) Send() (*http.Response, error) {
 		strings.ToUpper(req.Method), req.URL, req.Body)
 
 	corereq.Header = req.Headers
-	corereq.Header.Add(httputilmore.HeaderAccept, JSON_CONTENT_TYPE)
+	corereq.Header.Add(httputilmore.HeaderAccept, httputilmore.ContentTypeAppJSONUtf8)
 
 	client := &http.Client{}
 	return client.Do(corereq)
@@ -91,7 +91,7 @@ func (req *BaseRequest) Send() (*http.Response, error) {
 	corereq, _ := http.NewRequest(req.Method(), req.Url(), req.Body())
 
 	corereq.Header = req.Headers()
-	corereq.Header.Add("Accept", JSON_CONTENT_TYPE)
+	corereq.Header.Add(httputilmore.HeaderAccept, httputilmore.ContentTypeAppJSONUtf8)
 
 	// RESPONSE
 	client := &http.Client{}

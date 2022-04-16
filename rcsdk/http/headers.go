@@ -4,6 +4,7 @@ import (
 	corehttp "net/http"
 )
 
+/*
 const (
 	CONTENT_TYPE             string = "Content-Type"
 	AUTHORIZATION            string = "Authorization"
@@ -11,6 +12,7 @@ const (
 	JSON_CONTENT_TYPE        string = "application/json"
 	MULTIPART_CONTENT_TYPE   string = "multipart/mixed"
 )
+*/
 
 type Headers struct {
 	headers corehttp.Header
