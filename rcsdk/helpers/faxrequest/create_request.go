@@ -4,11 +4,11 @@ import (
 	"bytes"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 	"mime/multipart"
 	"net/http"
 	"net/textproto"
 	"net/url"
+	"os"
 	"path/filepath"
 	"strings"
 
@@ -82,7 +82,7 @@ func (fax *FaxRequest) SetMetadata(metadata Metadata) error {
 
 func (fax *FaxRequest) AddFile(path string) error {
 	// READ FILE
-	bytes, err := ioutil.ReadFile(path)
+	bytes, err := os.ReadFile(path)
 	if err != nil {
 		return err
 	}
