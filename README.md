@@ -9,7 +9,7 @@
  [used-by-svg]: https://sourcegraph.com/github.com/grokify/ringcentral-sdk-go/-/badge.svg
  [used-by-url]: https://sourcegraph.com/github.com/grokify/ringcentral-sdk-go?badge
  [build-status-svg]: https://github.com/grokify/ringcentral-sdk-go/workflows/go%20build/badge.svg?branch=master
- [build-status-url]: https://github.com/grokify/ringcentral-sdk-go/actions
+ [build-status-url]: https://github.com/grokify/ringcentral-sdk-go/actions/workflows/test.yaml
  [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/ringcentral-sdk-go
  [goreport-url]: https://goreportcard.com/report/github.com/grokify/ringcentral-sdk-go
  [codeclimate-status-svg]: https://codeclimate.com/github/grokify/ringcentral-sdk-go/badges/gpa.svg
