@@ -66,9 +66,9 @@ func (s *CallLogStats) Inflate() {
 		return
 	}
 	if s.Dt14Start > 0 && s.Dt14End > 0 && s.Dt14Start < s.Dt14End {
-		dtStart, err1 := timeutil.TimeForDt14(s.Dt14Start)
+		dtStart, err1 := time.Parse(timeutil.DT14, strconv.Itoa(int(s.Dt14Start)))
 		if err1 == nil {
-			dtEnd, err2 := timeutil.TimeForDt14(s.Dt14End)
+			dtEnd, err2 := time.Parse(timeutil.DT14, strconv.Itoa(int(s.Dt14End)))
 			if err2 == nil {
 				dur := dtEnd.Sub(dtStart)
 				durHrs := dur.Hours()
@@ -108,7 +108,7 @@ func (rs *CallLogRecordsCsv) GetStatsForVoiceRecordings() CallLogStats {
 		if len(rec.TimeRfc3339) > 0 {
 			dt, err := time.Parse(time.RFC3339, rec.TimeRfc3339)
 			if err == nil {
-				dt14 := timeutil.Dt14ForTime(dt)
+				dt14 := timeutil.NewTimeMore(dt, 0).DT14()
 				if stats.Dt14Start < 0 || dt14 < stats.Dt14Start {
 					stats.Dt14Start = dt14
 				}
