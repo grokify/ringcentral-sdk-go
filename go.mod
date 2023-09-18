@@ -3,7 +3,7 @@ module github.com/grokify/ringcentral-sdk-go
 go 1.18
 
 require (
-	github.com/grokify/mogo v0.55.0
+	github.com/grokify/mogo v0.56.0
 	github.com/ttacon/libphonenumber v1.2.1
 )
 
