@@ -1,9 +1,5 @@
 package http
 
-import (
-	corehttp "net/http"
-)
-
 /*
 const (
 	CONTENT_TYPE             string = "Content-Type"
@@ -14,14 +10,16 @@ const (
 )
 */
 
+/*
 type Headers struct {
-	headers corehttp.Header
+	headers stdhttp.Header
 }
 
 func (h *Headers) SetHeader(name string, value string) {
 	h.headers.Set(name, value)
 }
 
-func (h *Headers) GetHeaders() corehttp.Header {
+func (h *Headers) GetHeaders() stdhttp.Header {
 	return h.headers
 }
+*/

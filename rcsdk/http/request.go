@@ -6,13 +6,12 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"strings"
 
 	"github.com/grokify/mogo/net/http/httputilmore"
 )
 
-type RequestInterface interface {
-}
+/*
+type RequestInterface interface{}
 
 type Request2 struct {
 	Method  string
@@ -32,8 +31,10 @@ func NewRequest2() Request2 {
 }
 
 func (req *Request2) Send() (*http.Response, error) {
-	corereq, _ := http.NewRequest(
-		strings.ToUpper(req.Method), req.URL, req.Body)
+	corereq, err := http.NewRequest(strings.ToUpper(req.Method), req.URL, req.Body)
+	if err != nil {
+		return nil, err
+	}
 
 	corereq.Header = req.Headers
 	corereq.Header.Add(httputilmore.HeaderAccept, httputilmore.ContentTypeAppJSONUtf8)
@@ -41,6 +42,7 @@ func (req *Request2) Send() (*http.Response, error) {
 	client := &http.Client{}
 	return client.Do(corereq)
 }
+*/
 
 type Request interface {
 	Method() string

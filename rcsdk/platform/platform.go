@@ -4,7 +4,6 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -12,6 +11,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/grokify/mogo/net/http/httpsimple"
 	"github.com/grokify/mogo/net/http/httputilmore"
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/core"
 	rchttp "github.com/grokify/ringcentral-sdk-go/rcsdk/http"
@@ -48,7 +48,7 @@ func (p *Platform) IsAuthorized() *Platform {
 	return p
 }
 
-func (p *Platform) ApiUrl(url string) string {
+func (p *Platform) APIURL(url string) string {
 	absUrl := strings.Join([]string{p.server, URL_PREFIX, "/", API_VERSION, url}, "")
 	return absUrl
 }
@@ -95,11 +95,20 @@ func (p *Platform) apiCall(req rchttp.Request) (*http.Response, error) {
 
 	log.Printf("[INFO] SDK_Request_URL [%s]", req.Url())
 
-	req.SetUrl(p.ApiUrl(req.Url()))
+	req.SetUrl(p.APIURL(req.Url()))
 	return req.Send()
 }
 
-func (p *Platform) APICall(req rchttp.Request2) (*http.Response, error) {
+func (p *Platform) APICall(req httpsimple.SimpleRequest) (*http.Response, error) {
+	p.IsAuthorized()
+
+	req.Headers.Add(httputilmore.HeaderAuthorization, p.GetAuthHeader())
+
+	return httpsimple.Do(req)
+}
+
+/*
+func (p *Platform) APICall2(req rchttp.Request2) (*http.Response, error) {
 	p.IsAuthorized()
 
 	req.Headers.Add(httputilmore.HeaderAuthorization, p.GetAuthHeader())
@@ -115,30 +124,52 @@ func (p *Platform) APICall(req rchttp.Request2) (*http.Response, error) {
 
 	return req.Send()
 }
+*/
 
 func (p *Platform) authCall(username string, extension string, password string) (*http.Response, error) {
-
-	// URL
-	tokenUrl := strings.Join([]string{p.server, TOKEN_ENDPOINT}, "")
-
 	// BODY
 	data := url.Values{}
 	data.Add("grant_type", "password")
 	data.Add("username", username)
 	data.Add("extension", extension)
 	data.Add("password", password)
-	body := strings.NewReader(data.Encode())
 
-	// REQUEST
-	req, _ := http.NewRequest("POST", tokenUrl, body)
+	req := httpsimple.SimpleRequest{
+		Method: http.MethodPost,
+		URL:    strings.Join([]string{p.server, TOKEN_ENDPOINT}, ""),
+		Headers: http.Header{
+			httputilmore.HeaderAuthorization: []string{strings.Join([]string{"Basic", p.GetApiKey()}, " ")},
+			httputilmore.HeaderContentType:   []string{httputilmore.ContentTypeAppFormURLEncodedUtf8},
+		},
+		Body: data.Encode,
+	}
 
-	authzHeaderVal := strings.Join([]string{"Basic", p.GetApiKey()}, " ")
-	req.Header.Add(httputilmore.HeaderAuthorization, authzHeaderVal)
-	req.Header.Add(httputilmore.HeaderContentType, httputilmore.ContentTypeAppFormURLEncodedUtf8)
+	return httpsimple.Do(req)
+	/*
+		if 1 == 0 {
+			// URL
+			tokenURL := strings.Join([]string{p.server, TOKEN_ENDPOINT}, "")
 
-	// RESPONSE
-	client := &http.Client{}
-	return client.Do(req)
+			// BODY
+			data := url.Values{}
+			data.Add("grant_type", "password")
+			data.Add("username", username)
+			data.Add("extension", extension)
+			data.Add("password", password)
+			body := strings.NewReader(data.Encode())
+
+			// REQUEST
+			req, _ := http.NewRequest(http.MethodPost, tokenURL, body)
+
+			authzHeaderVal := strings.Join([]string{"Basic", p.GetApiKey()}, " ")
+			req.Header.Add(httputilmore.HeaderAuthorization, authzHeaderVal)
+			req.Header.Add(httputilmore.HeaderContentType, httputilmore.ContentTypeAppFormURLEncodedUtf8)
+
+			// RESPONSE
+			client := &http.Client{}
+			return client.Do(req)
+		}
+	*/
 }
 
 func (p *Platform) Send(req rchttp.Request) (*http.Response, error) {
