@@ -99,7 +99,7 @@ func (p *Platform) apiCall(req rchttp.Request) (*http.Response, error) {
 	return req.Send()
 }
 
-func (p *Platform) APICall(req httpsimple.SimpleRequest) (*http.Response, error) {
+func (p *Platform) APICall(req httpsimple.Request) (*http.Response, error) {
 	p.IsAuthorized()
 
 	req.Headers.Add(httputilmore.HeaderAuthorization, p.GetAuthHeader())
@@ -134,7 +134,7 @@ func (p *Platform) authCall(username string, extension string, password string) 
 	data.Add("extension", extension)
 	data.Add("password", password)
 
-	req := httpsimple.SimpleRequest{
+	req := httpsimple.Request{
 		Method: http.MethodPost,
 		URL:    strings.Join([]string{p.server, TOKEN_ENDPOINT}, ""),
 		Headers: http.Header{
