@@ -18,15 +18,15 @@ import (
 )
 
 const (
-	ACCESS_TOKEN_TTL           int    = 3600
-	REFRESH_TOKEN_TTL          int    = 36000  // 10 hours
-	REFRESH_TOKEN_TTL_REMEMBER int    = 604800 // 1 week
-	ACCOUNT_PREFIX             string = "/account/"
-	ACCOUNT_ID                 string = "~"
-	TOKEN_ENDPOINT             string = "/restapi/oauth/token" // #nosec G101
-	REVOKE_ENDPOINT            string = "/restapi/oauth/revoke"
-	API_VERSION                string = "v1.0"
-	URL_PREFIX                 string = "/restapi"
+	AccessTokenTTL          int    = 3600
+	RefreshTokenTTL         int    = 36000  // 10 hours
+	RefreshTokenTTLRemember int    = 604800 // 1 week
+	AccountPrefix           string = "/account/"
+	AccountID               string = "~"
+	TokenEndpoint           string = "/restapi/oauth/token" // #nosec G101
+	RevokeEndpoint          string = "/restapi/oauth/revoke"
+	APIVersion              string = "v1.0"
+	URLPrefix               string = "/restapi"
 )
 
 type Platform struct {
@@ -49,7 +49,7 @@ func (p *Platform) IsAuthorized() *Platform {
 }
 
 func (p *Platform) APIURL(url string) string {
-	absUrl := strings.Join([]string{p.server, URL_PREFIX, "/", API_VERSION, url}, "")
+	absUrl := strings.Join([]string{p.server, URLPrefix, "/", APIVersion, url}, "")
 	return absUrl
 }
 
@@ -136,7 +136,7 @@ func (p *Platform) authCall(username string, extension string, password string) 
 
 	req := httpsimple.Request{
 		Method: http.MethodPost,
-		URL:    strings.Join([]string{p.server, TOKEN_ENDPOINT}, ""),
+		URL:    strings.Join([]string{p.server, TokenEndpoint}, ""),
 		Headers: http.Header{
 			httputilmore.HeaderAuthorization: []string{strings.Join([]string{"Basic", p.GetApiKey()}, " ")},
 			httputilmore.HeaderContentType:   []string{httputilmore.ContentTypeAppFormURLEncodedUtf8},
