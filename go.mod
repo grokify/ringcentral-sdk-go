@@ -5,7 +5,7 @@ go 1.21
 // toolchain go1.21.1
 
 require (
-	github.com/grokify/mogo v0.61.0
+	github.com/grokify/mogo v0.61.1
 	github.com/ttacon/libphonenumber v1.2.1
 )
 
