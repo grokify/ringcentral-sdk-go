@@ -1,11 +1,12 @@
 module github.com/grokify/ringcentral-sdk-go
 
 go 1.21
+toolchain go1.22.1
 
 // toolchain go1.21.1
 
 require (
-	github.com/grokify/mogo v0.62.6
+	github.com/grokify/mogo v0.63.3
 	github.com/ttacon/libphonenumber v1.2.1
 )
 
@@ -16,9 +17,9 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/ttacon/builder v0.0.0-20170518171403-c099f663e1c2 // indirect
-	golang.org/x/exp v0.0.0-20231226003508-02704c960a9b // indirect
+	golang.org/x/exp v0.0.0-20240314144324-c7f7c6466f7f // indirect
 	golang.org/x/text v0.14.0 // indirect
-	google.golang.org/protobuf v1.32.0 // indirect
+	google.golang.org/protobuf v1.33.0 // indirect
 )
 
 // replace github.com/grokify/mogo => ../mogo
