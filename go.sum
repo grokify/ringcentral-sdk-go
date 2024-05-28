@@ -6,8 +6,8 @@ github.com/golang/protobuf v1.5.4/go.mod h1:lnTiLA8Wa4RWRcIUkrtSVa5nRhsEGBg48fD6
 github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
 github.com/google/go-cmp v0.6.0/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
 github.com/google/gofuzz v1.0.0/go.mod h1:dBl0BpW6vV/+mYPU4Po3pmUjxk6FQPldtuIdl/M65Eg=
-github.com/grokify/mogo v0.63.11 h1:vgh5nSuhJZMTZ2TkNt7s3e/T3lY6xGlB0q28ez3JOXk=
-github.com/grokify/mogo v0.63.11/go.mod h1:xiALI6FeTSs7FBOvTmYbeB3PzXNQryidUAQXZYB83Cc=
+github.com/grokify/mogo v0.64.0 h1:v32BZwLcEzqmi+fMpKHO5OTZwk/0e7Mj6ZhoTASy/9Q=
+github.com/grokify/mogo v0.64.0/go.mod h1:xiALI6FeTSs7FBOvTmYbeB3PzXNQryidUAQXZYB83Cc=
 github.com/huandu/xstrings v1.4.0 h1:D17IlohoQq4UcpqD7fDk80P7l+lwAmlFaBHgOipl2FU=
 github.com/huandu/xstrings v1.4.0/go.mod h1:y5/lhBue+AyNmUVz9RLU9xbLR0o4KIIExikq4ovT0aE=
 github.com/json-iterator/go v1.1.12 h1:PV8peI4a0ysnczrg+LtxykD8LfKY9ML6u2jnxaEnrnM=
