@@ -1,6 +1,7 @@
 package platform
 
 import (
+	"context"
 	"encoding/base64"
 	"encoding/json"
 	"errors"
@@ -53,8 +54,8 @@ func (p *Platform) APIURL(url string) string {
 	return absUrl
 }
 
-func (p *Platform) Authorize(username string, extension string, password string, remember bool) (*http.Response, error) {
-	res, err := p.authCall(username, extension, password)
+func (p *Platform) Authorize(ctx context.Context, username string, extension string, password string, remember bool) (*http.Response, error) {
+	res, err := p.authCall(ctx, username, extension, password)
 	if err != nil {
 		return res, err
 	}
@@ -99,12 +100,12 @@ func (p *Platform) apiCall(req rchttp.Request) (*http.Response, error) {
 	return req.Send()
 }
 
-func (p *Platform) APICall(req httpsimple.Request) (*http.Response, error) {
+func (p *Platform) APICall(ctx context.Context, req httpsimple.Request) (*http.Response, error) {
 	p.IsAuthorized()
 
 	req.Headers.Add(httputilmore.HeaderAuthorization, p.GetAuthHeader())
 
-	return httpsimple.Do(req)
+	return httpsimple.Do(ctx, req)
 }
 
 /*
@@ -126,7 +127,7 @@ func (p *Platform) APICall2(req rchttp.Request2) (*http.Response, error) {
 }
 */
 
-func (p *Platform) authCall(username string, extension string, password string) (*http.Response, error) {
+func (p *Platform) authCall(ctx context.Context, username string, extension string, password string) (*http.Response, error) {
 	// BODY
 	data := url.Values{}
 	data.Add("grant_type", "password")
@@ -144,7 +145,7 @@ func (p *Platform) authCall(username string, extension string, password string) 
 		Body: data.Encode,
 	}
 
-	return httpsimple.Do(req)
+	return httpsimple.Do(ctx, req)
 	/*
 		if 1 == 0 {
 			// URL
