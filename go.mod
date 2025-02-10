@@ -1,7 +1,6 @@
 module github.com/grokify/ringcentral-sdk-go
 
-go 1.22.0
-toolchain go1.23.6
+go 1.23.6
 
 require (
 	github.com/grokify/mogo v0.67.9
@@ -20,5 +19,3 @@ require (
 	golang.org/x/text v0.22.0 // indirect
 	google.golang.org/protobuf v1.36.5 // indirect
 )
-
-// replace github.com/grokify/mogo => ../mogo
