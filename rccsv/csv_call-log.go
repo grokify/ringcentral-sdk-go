@@ -96,9 +96,11 @@ func (rs *CallLogRecordsCsv) GetStatsForVoiceRecordings() CallLogStats {
 	stats.NumCalls = 0
 	for _, rec := range rs.CallLogRecords {
 		rec.Inflate()
-		if rec.Action != "Phone Call" && rec.Action != "VoIP Call" && rec.Action != "FindMe" {
-			//continue
-		}
+		/*
+			if rec.Action != "Phone Call" && rec.Action != "VoIP Call" && rec.Action != "FindMe" {
+				continue
+			}
+		*/
 		if rec.ActionResult != "Accepted" && rec.ActionResult != "Call connected" {
 			continue
 		}

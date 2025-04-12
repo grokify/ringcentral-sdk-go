@@ -108,7 +108,6 @@ func (fax *FaxRequest) AddFile(path string) error {
 }
 
 func (fax *FaxRequest) AddText(bytes []byte, contentType string) error {
-
 	if len(contentType) == 0 {
 		contentType = httputilmore.ContentTypeTextPlain
 	}
