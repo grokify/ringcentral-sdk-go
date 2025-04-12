@@ -105,7 +105,7 @@ func (p *Platform) APICall(ctx context.Context, req httpsimple.Request) (*http.R
 
 	req.Headers.Add(httputilmore.HeaderAuthorization, p.GetAuthHeader())
 
-	return httpsimple.Do(ctx, req)
+	return req.Do(ctx)
 }
 
 /*
@@ -145,7 +145,7 @@ func (p *Platform) authCall(ctx context.Context, username string, extension stri
 		Body: data.Encode,
 	}
 
-	return httpsimple.Do(ctx, req)
+	return req.Do(ctx)
 	/*
 		if 1 == 0 {
 			// URL
