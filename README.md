@@ -9,9 +9,9 @@
 
  [used-by-svg]: https://sourcegraph.com/github.com/grokify/ringcentral-sdk-go/-/badge.svg
  [used-by-url]: https://sourcegraph.com/github.com/grokify/ringcentral-sdk-go?badge
- [build-status-svg]: https://github.com/grokify/ringcentral-sdk-go/workflows/test/badge.svg
- [build-status-url]: https://github.com/grokify/ringcentral-sdk-go/actions/workflows/test.yaml
- [lint-status-svg]: https://github.com/grokify/ringcentral-sdk-go/workflows/lint/badge.svg
+ [build-status-svg]: https://github.com/grokify/ringcentral-sdk-go/actions/workflows/ci.yaml/badge.svg?branch=master
+ [build-status-url]: https://github.com/grokify/ringcentral-sdk-go/actions/workflows/ci.yaml
+ [lint-status-svg]: https://github.com/grokify/ringcentral-sdk-go/actions/workflows/lint.yaml/badge.svg?branch=master
  [lint-status-url]: https://github.com/grokify/ringcentral-sdk-go/actions/workflows/lint.yaml
  [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/ringcentral-sdk-go
  [goreport-url]: https://goreportcard.com/report/github.com/grokify/ringcentral-sdk-go
