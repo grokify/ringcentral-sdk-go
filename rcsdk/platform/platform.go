@@ -14,6 +14,7 @@ import (
 
 	"github.com/grokify/mogo/net/http/httpsimple"
 	"github.com/grokify/mogo/net/http/httputilmore"
+
 	"github.com/grokify/ringcentral-sdk-go/rcsdk/core"
 	rchttp "github.com/grokify/ringcentral-sdk-go/rcsdk/http"
 )
@@ -105,7 +106,7 @@ func (p *Platform) APICall(ctx context.Context, req httpsimple.Request) (*http.R
 
 	req.Headers.Add(httputilmore.HeaderAuthorization, p.GetAuthHeader())
 
-	return req.Do(ctx)
+	return req.Do(ctx, nil)
 }
 
 /*
@@ -145,7 +146,7 @@ func (p *Platform) authCall(ctx context.Context, username string, extension stri
 		Body: data.Encode,
 	}
 
-	return req.Do(ctx)
+	return req.Do(ctx, nil)
 	/*
 		if 1 == 0 {
 			// URL
